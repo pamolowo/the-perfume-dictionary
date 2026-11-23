@@ -1,0 +1,1096 @@
+{
+ "version": "note-reference/1.0",
+ "licence": "Internal curated reference of generic perfumery material names and indicative accord weights. Accord weights are editorial approximations, not measurements.",
+ "accords": [
+  {
+   "slug": "amber",
+   "key": "amber",
+   "name": "Amber",
+   "description": "Warm, resinous and balsamic."
+  },
+  {
+   "slug": "aquatic",
+   "key": "aquatic",
+   "name": "Aquatic",
+   "description": "Watery, marine, ozonic."
+  },
+  {
+   "slug": "aromatic",
+   "key": "aromatic",
+   "name": "Aromatic",
+   "description": "Herbal: lavender, sage, rosemary."
+  },
+  {
+   "slug": "citrus",
+   "key": "citrus",
+   "name": "Citrus",
+   "description": "Bright and zesty."
+  },
+  {
+   "slug": "earthy",
+   "key": "earthy",
+   "name": "Earthy",
+   "description": "Rooty, damp soil, mossy."
+  },
+  {
+   "slug": "floral",
+   "key": "floral",
+   "name": "Floral",
+   "description": "Rose, violet, peony and other flowers."
+  },
+  {
+   "slug": "fruity",
+   "key": "fruity",
+   "name": "Fruity",
+   "description": "Berries, pear, stone and tropical fruit."
+  },
+  {
+   "slug": "gourmand",
+   "key": "gourmand",
+   "name": "Gourmand",
+   "description": "Edible: vanilla, caramel, coffee."
+  },
+  {
+   "slug": "green",
+   "key": "green",
+   "name": "Green",
+   "description": "Cut leaves, stems, galbanum."
+  },
+  {
+   "slug": "leather",
+   "key": "leather",
+   "name": "Leather",
+   "description": "Suede, birch tar, animalic leather."
+  },
+  {
+   "slug": "musky",
+   "key": "musky",
+   "name": "Musky",
+   "description": "Soft, skin-like, clean musks."
+  },
+  {
+   "slug": "powdery",
+   "key": "powdery",
+   "name": "Powdery",
+   "description": "Iris, heliotrope, cosmetic softness."
+  },
+  {
+   "slug": "smoky",
+   "key": "smoky",
+   "name": "Smoky",
+   "description": "Incense, tar, burnt woods."
+  },
+  {
+   "slug": "spicy",
+   "key": "spicy",
+   "name": "Spicy",
+   "description": "Pepper, cinnamon, clove, cardamom."
+  },
+  {
+   "slug": "white-floral",
+   "key": "white_floral",
+   "name": "White floral",
+   "description": "Jasmine, tuberose, orange blossom, gardenia."
+  },
+  {
+   "slug": "woody",
+   "key": "woody",
+   "name": "Woody",
+   "description": "Cedar, sandalwood, vetiver, oud."
+  }
+ ],
+ "notes": [
+  {
+   "slug": "aldehydes",
+   "name": "Aldehydes",
+   "family": "powdery",
+   "tier": "top",
+   "aliases": [
+    "aldehyde"
+   ],
+   "accords": {
+    "powdery": 0.4,
+    "citrus": 0.3,
+    "musky": 0.2,
+    "floral": 0.1
+   }
+  },
+  {
+   "slug": "almond",
+   "name": "Almond",
+   "family": "gourmand",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "gourmand": 0.7,
+    "fruity": 0.15,
+    "powdery": 0.15
+   }
+  },
+  {
+   "slug": "amber",
+   "name": "Amber Accord",
+   "family": "amber",
+   "tier": "base",
+   "aliases": [
+    "ambery accord",
+    "amber accord"
+   ],
+   "accords": {
+    "amber": 0.8,
+    "gourmand": 0.1,
+    "musky": 0.1
+   }
+  },
+  {
+   "slug": "ambroxan",
+   "name": "Ambroxan (Ambergris)",
+   "family": "amber",
+   "tier": "base",
+   "aliases": [
+    "ambergris",
+    "ambrox",
+    "grey amber"
+   ],
+   "accords": {
+    "amber": 0.35,
+    "musky": 0.3,
+    "woody": 0.25,
+    "aquatic": 0.1
+   }
+  },
+  {
+   "slug": "apple",
+   "name": "Apple",
+   "family": "fruity",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "fruity": 0.8,
+    "green": 0.2
+   }
+  },
+  {
+   "slug": "basil",
+   "name": "Basil",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.7,
+    "green": 0.3
+   }
+  },
+  {
+   "slug": "benzoin",
+   "name": "Benzoin",
+   "family": "amber",
+   "tier": "base",
+   "aliases": [
+    "siam benzoin"
+   ],
+   "accords": {
+    "amber": 0.6,
+    "gourmand": 0.4
+   }
+  },
+  {
+   "slug": "bergamot",
+   "name": "Bergamot",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.75,
+    "aromatic": 0.1,
+    "floral": 0.1,
+    "green": 0.05
+   }
+  },
+  {
+   "slug": "birch-tar",
+   "name": "Birch Tar",
+   "family": "smoky",
+   "tier": "base",
+   "aliases": [
+    "birch"
+   ],
+   "accords": {
+    "smoky": 0.7,
+    "leather": 0.3
+   }
+  },
+  {
+   "slug": "black-pepper",
+   "name": "Black Pepper",
+   "family": "spicy",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.8,
+    "woody": 0.2
+   }
+  },
+  {
+   "slug": "blackcurrant",
+   "name": "Blackcurrant (Cassis)",
+   "family": "fruity",
+   "tier": "top",
+   "aliases": [
+    "cassis",
+    "blackcurrant bud",
+    "black currant"
+   ],
+   "accords": {
+    "fruity": 0.6,
+    "green": 0.3,
+    "earthy": 0.1
+   }
+  },
+  {
+   "slug": "cacao",
+   "name": "Cacao",
+   "family": "gourmand",
+   "tier": "base",
+   "aliases": [
+    "cocoa",
+    "chocolate"
+   ],
+   "accords": {
+    "gourmand": 0.8,
+    "earthy": 0.2
+   }
+  },
+  {
+   "slug": "caramel",
+   "name": "Caramel",
+   "family": "gourmand",
+   "tier": "base",
+   "aliases": [],
+   "accords": {
+    "gourmand": 1.0
+   }
+  },
+  {
+   "slug": "cardamom",
+   "name": "Cardamom",
+   "family": "spicy",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.6,
+    "aromatic": 0.3,
+    "citrus": 0.1
+   }
+  },
+  {
+   "slug": "cashmeran",
+   "name": "Cashmere Wood (Cashmeran)",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [
+    "cashmere wood",
+    "cashmere"
+   ],
+   "accords": {
+    "woody": 0.5,
+    "musky": 0.3,
+    "powdery": 0.2
+   }
+  },
+  {
+   "slug": "cedarwood",
+   "name": "Cedarwood",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [
+    "cedar",
+    "atlas cedar",
+    "virginia cedar"
+   ],
+   "accords": {
+    "woody": 0.9,
+    "earthy": 0.1
+   }
+  },
+  {
+   "slug": "cinnamon",
+   "name": "Cinnamon",
+   "family": "spicy",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.8,
+    "gourmand": 0.2
+   }
+  },
+  {
+   "slug": "clary-sage",
+   "name": "Clary Sage",
+   "family": "aromatic",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.7,
+    "floral": 0.2,
+    "earthy": 0.1
+   }
+  },
+  {
+   "slug": "clove",
+   "name": "Clove",
+   "family": "spicy",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.85,
+    "woody": 0.1,
+    "floral": 0.05
+   }
+  },
+  {
+   "slug": "coffee",
+   "name": "Coffee",
+   "family": "gourmand",
+   "tier": "heart",
+   "aliases": [
+    "espresso"
+   ],
+   "accords": {
+    "gourmand": 0.6,
+    "smoky": 0.2,
+    "earthy": 0.2
+   }
+  },
+  {
+   "slug": "fig",
+   "name": "Fig",
+   "family": "green",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "green": 0.45,
+    "fruity": 0.35,
+    "woody": 0.2
+   }
+  },
+  {
+   "slug": "galbanum",
+   "name": "Galbanum",
+   "family": "green",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "green": 0.85,
+    "earthy": 0.1,
+    "woody": 0.05
+   }
+  },
+  {
+   "slug": "gardenia",
+   "name": "Gardenia",
+   "family": "white floral",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "white_floral": 0.7,
+    "green": 0.15,
+    "gourmand": 0.15
+   }
+  },
+  {
+   "slug": "geranium",
+   "name": "Geranium",
+   "family": "floral",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "floral": 0.5,
+    "aromatic": 0.3,
+    "green": 0.2
+   }
+  },
+  {
+   "slug": "ginger",
+   "name": "Ginger",
+   "family": "spicy",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.6,
+    "citrus": 0.25,
+    "green": 0.15
+   }
+  },
+  {
+   "slug": "grapefruit",
+   "name": "Grapefruit",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.75,
+    "fruity": 0.15,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "green-tea",
+   "name": "Green Tea",
+   "family": "aromatic",
+   "tier": "heart",
+   "aliases": [
+    "tea",
+    "matcha"
+   ],
+   "accords": {
+    "aromatic": 0.4,
+    "green": 0.4,
+    "citrus": 0.2
+   }
+  },
+  {
+   "slug": "guaiac-wood",
+   "name": "Guaiac Wood",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [],
+   "accords": {
+    "woody": 0.6,
+    "smoky": 0.4
+   }
+  },
+  {
+   "slug": "heliotrope",
+   "name": "Heliotrope",
+   "family": "powdery",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "powdery": 0.6,
+    "gourmand": 0.3,
+    "floral": 0.1
+   }
+  },
+  {
+   "slug": "incense",
+   "name": "Incense (Frankincense)",
+   "family": "smoky",
+   "tier": "base",
+   "aliases": [
+    "frankincense",
+    "olibanum"
+   ],
+   "accords": {
+    "smoky": 0.5,
+    "amber": 0.3,
+    "woody": 0.2
+   }
+  },
+  {
+   "slug": "iris",
+   "name": "Iris (Orris)",
+   "family": "powdery",
+   "tier": "heart",
+   "aliases": [
+    "orris",
+    "orris root",
+    "orris butter"
+   ],
+   "accords": {
+    "powdery": 0.7,
+    "floral": 0.15,
+    "earthy": 0.15
+   }
+  },
+  {
+   "slug": "iso-e-super",
+   "name": "Iso E Super",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [],
+   "accords": {
+    "woody": 0.8,
+    "amber": 0.1,
+    "musky": 0.1
+   }
+  },
+  {
+   "slug": "jasmine",
+   "name": "Jasmine",
+   "family": "white floral",
+   "tier": "heart",
+   "aliases": [
+    "jasmine sambac",
+    "jasmin",
+    "jasmine absolute"
+   ],
+   "accords": {
+    "white_floral": 0.8,
+    "floral": 0.1,
+    "fruity": 0.05,
+    "musky": 0.05
+   }
+  },
+  {
+   "slug": "juniper-berry",
+   "name": "Juniper Berry",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.5,
+    "woody": 0.25,
+    "citrus": 0.25
+   }
+  },
+  {
+   "slug": "labdanum",
+   "name": "Labdanum",
+   "family": "amber",
+   "tier": "base",
+   "aliases": [
+    "cistus",
+    "rockrose"
+   ],
+   "accords": {
+    "amber": 0.7,
+    "leather": 0.2,
+    "woody": 0.1
+   }
+  },
+  {
+   "slug": "lavender",
+   "name": "Lavender",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.7,
+    "floral": 0.2,
+    "woody": 0.1
+   }
+  },
+  {
+   "slug": "leather",
+   "name": "Leather Accord",
+   "family": "leather",
+   "tier": "base",
+   "aliases": [
+    "suede",
+    "leather accord"
+   ],
+   "accords": {
+    "leather": 0.8,
+    "smoky": 0.1,
+    "powdery": 0.1
+   }
+  },
+  {
+   "slug": "lemon",
+   "name": "Lemon",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.9,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "lily-of-the-valley",
+   "name": "Lily of the Valley",
+   "family": "floral",
+   "tier": "heart",
+   "aliases": [
+    "muguet"
+   ],
+   "accords": {
+    "floral": 0.7,
+    "green": 0.3
+   }
+  },
+  {
+   "slug": "lime",
+   "name": "Lime",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.85,
+    "green": 0.15
+   }
+  },
+  {
+   "slug": "lotus",
+   "name": "Lotus",
+   "family": "aquatic",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "aquatic": 0.6,
+    "floral": 0.4
+   }
+  },
+  {
+   "slug": "magnolia",
+   "name": "Magnolia",
+   "family": "floral",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "floral": 0.6,
+    "citrus": 0.2,
+    "white_floral": 0.2
+   }
+  },
+  {
+   "slug": "mandarin",
+   "name": "Mandarin",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [
+    "tangerine",
+    "mandarin orange"
+   ],
+   "accords": {
+    "citrus": 0.7,
+    "fruity": 0.2,
+    "gourmand": 0.1
+   }
+  },
+  {
+   "slug": "marine-accord",
+   "name": "Marine Accord (Calone)",
+   "family": "aquatic",
+   "tier": "top",
+   "aliases": [
+    "calone",
+    "sea notes",
+    "watery notes",
+    "ozonic notes"
+   ],
+   "accords": {
+    "aquatic": 0.75,
+    "fruity": 0.1,
+    "green": 0.15
+   }
+  },
+  {
+   "slug": "mint",
+   "name": "Mint",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.7,
+    "green": 0.3
+   }
+  },
+  {
+   "slug": "myrrh",
+   "name": "Myrrh",
+   "family": "amber",
+   "tier": "base",
+   "aliases": [],
+   "accords": {
+    "amber": 0.5,
+    "earthy": 0.3,
+    "smoky": 0.2
+   }
+  },
+  {
+   "slug": "neroli",
+   "name": "Neroli",
+   "family": "white floral",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "floral": 0.35,
+    "citrus": 0.35,
+    "white_floral": 0.2,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "nutmeg",
+   "name": "Nutmeg",
+   "family": "spicy",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.7,
+    "woody": 0.2,
+    "aromatic": 0.1
+   }
+  },
+  {
+   "slug": "oakmoss",
+   "name": "Oakmoss",
+   "family": "earthy",
+   "tier": "base",
+   "aliases": [
+    "mousse de chene",
+    "oak moss"
+   ],
+   "accords": {
+    "earthy": 0.6,
+    "green": 0.25,
+    "woody": 0.15
+   }
+  },
+  {
+   "slug": "orange-blossom",
+   "name": "Orange Blossom",
+   "family": "white floral",
+   "tier": "heart",
+   "aliases": [
+    "orange flower",
+    "fleur d'oranger"
+   ],
+   "accords": {
+    "white_floral": 0.6,
+    "floral": 0.2,
+    "citrus": 0.2
+   }
+  },
+  {
+   "slug": "oud",
+   "name": "Oud (Agarwood)",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [
+    "agarwood",
+    "aoud",
+    "oudh",
+    "agar wood"
+   ],
+   "accords": {
+    "woody": 0.5,
+    "leather": 0.25,
+    "smoky": 0.15,
+    "earthy": 0.1
+   }
+  },
+  {
+   "slug": "patchouli",
+   "name": "Patchouli",
+   "family": "earthy",
+   "tier": "base",
+   "aliases": [
+    "patchouly"
+   ],
+   "accords": {
+    "earthy": 0.6,
+    "woody": 0.3,
+    "amber": 0.1
+   }
+  },
+  {
+   "slug": "peach",
+   "name": "Peach",
+   "family": "fruity",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "fruity": 0.8,
+    "gourmand": 0.1,
+    "floral": 0.1
+   }
+  },
+  {
+   "slug": "pear",
+   "name": "Pear",
+   "family": "fruity",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "fruity": 0.85,
+    "green": 0.15
+   }
+  },
+  {
+   "slug": "peony",
+   "name": "Peony",
+   "family": "floral",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "floral": 0.8,
+    "fruity": 0.15,
+    "aquatic": 0.05
+   }
+  },
+  {
+   "slug": "petitgrain",
+   "name": "Petitgrain",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.4,
+    "green": 0.35,
+    "aromatic": 0.15,
+    "woody": 0.1
+   }
+  },
+  {
+   "slug": "pineapple",
+   "name": "Pineapple",
+   "family": "fruity",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "fruity": 0.8,
+    "citrus": 0.1,
+    "gourmand": 0.1
+   }
+  },
+  {
+   "slug": "pink-pepper",
+   "name": "Pink Pepper",
+   "family": "spicy",
+   "tier": "top",
+   "aliases": [
+    "pink peppercorn",
+    "baies roses"
+   ],
+   "accords": {
+    "spicy": 0.6,
+    "fruity": 0.2,
+    "floral": 0.1,
+    "woody": 0.1
+   }
+  },
+  {
+   "slug": "raspberry",
+   "name": "Raspberry",
+   "family": "fruity",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "fruity": 0.8,
+    "gourmand": 0.2
+   }
+  },
+  {
+   "slug": "rose",
+   "name": "Rose",
+   "family": "floral",
+   "tier": "heart",
+   "aliases": [
+    "rose absolute",
+    "rose de mai",
+    "damask rose",
+    "turkish rose",
+    "bulgarian rose"
+   ],
+   "accords": {
+    "floral": 0.85,
+    "fruity": 0.1,
+    "spicy": 0.05
+   }
+  },
+  {
+   "slug": "rosemary",
+   "name": "Rosemary",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "aromatic": 0.8,
+    "woody": 0.1,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "saffron",
+   "name": "Saffron",
+   "family": "spicy",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "spicy": 0.5,
+    "leather": 0.3,
+    "gourmand": 0.2
+   }
+  },
+  {
+   "slug": "sandalwood",
+   "name": "Sandalwood",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [
+    "sandal",
+    "santal"
+   ],
+   "accords": {
+    "woody": 0.7,
+    "gourmand": 0.2,
+    "musky": 0.1
+   }
+  },
+  {
+   "slug": "sea-fennel",
+   "name": "Sea Fennel",
+   "family": "aromatic",
+   "tier": "top",
+   "aliases": [
+    "crithmum"
+   ],
+   "accords": {
+    "aromatic": 0.6,
+    "aquatic": 0.3,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "sweet-orange",
+   "name": "Sweet Orange",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [
+    "orange"
+   ],
+   "accords": {
+    "citrus": 0.7,
+    "fruity": 0.3
+   }
+  },
+  {
+   "slug": "tobacco",
+   "name": "Tobacco",
+   "family": "smoky",
+   "tier": "base",
+   "aliases": [],
+   "accords": {
+    "smoky": 0.35,
+    "gourmand": 0.35,
+    "leather": 0.15,
+    "earthy": 0.15
+   }
+  },
+  {
+   "slug": "tonka-bean",
+   "name": "Tonka Bean",
+   "family": "gourmand",
+   "tier": "base",
+   "aliases": [
+    "tonka",
+    "coumarin"
+   ],
+   "accords": {
+    "gourmand": 0.6,
+    "powdery": 0.2,
+    "amber": 0.2
+   }
+  },
+  {
+   "slug": "tuberose",
+   "name": "Tuberose",
+   "family": "white floral",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "white_floral": 0.8,
+    "gourmand": 0.1,
+    "green": 0.1
+   }
+  },
+  {
+   "slug": "vanilla",
+   "name": "Vanilla",
+   "family": "gourmand",
+   "tier": "base",
+   "aliases": [
+    "vanille",
+    "bourbon vanilla",
+    "vanilla absolute"
+   ],
+   "accords": {
+    "gourmand": 0.8,
+    "amber": 0.2
+   }
+  },
+  {
+   "slug": "vetiver",
+   "name": "Vetiver",
+   "family": "woody",
+   "tier": "base",
+   "aliases": [
+    "vetyver"
+   ],
+   "accords": {
+    "woody": 0.5,
+    "earthy": 0.35,
+    "smoky": 0.15
+   }
+  },
+  {
+   "slug": "violet",
+   "name": "Violet",
+   "family": "powdery",
+   "tier": "heart",
+   "aliases": [],
+   "accords": {
+    "powdery": 0.5,
+    "floral": 0.4,
+    "fruity": 0.1
+   }
+  },
+  {
+   "slug": "violet-leaf",
+   "name": "Violet Leaf",
+   "family": "green",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "green": 0.7,
+    "aquatic": 0.2,
+    "floral": 0.1
+   }
+  },
+  {
+   "slug": "white-musk",
+   "name": "White Musk",
+   "family": "musk",
+   "tier": "base",
+   "aliases": [
+    "musk",
+    "clean musk",
+    "musks"
+   ],
+   "accords": {
+    "musky": 0.9,
+    "powdery": 0.1
+   }
+  },
+  {
+   "slug": "ylang-ylang",
+   "name": "Ylang-Ylang",
+   "family": "white floral",
+   "tier": "heart",
+   "aliases": [
+    "ylang"
+   ],
+   "accords": {
+    "white_floral": 0.6,
+    "floral": 0.2,
+    "fruity": 0.1,
+    "spicy": 0.1
+   }
+  },
+  {
+   "slug": "yuzu",
+   "name": "Yuzu",
+   "family": "citrus",
+   "tier": "top",
+   "aliases": [],
+   "accords": {
+    "citrus": 0.8,
+    "green": 0.1,
+    "aromatic": 0.1
+   }
+  }
+ ]
+}
