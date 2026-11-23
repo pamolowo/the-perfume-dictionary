@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/OWNER/the-perfume-dictionary.git
+    repoURL: https://github.com/pamolowo/the-perfume-dictionary.git
     targetRevision: main
     path: deploy/k8s/overlays/staging
   destination: { server: https://kubernetes.default.svc, namespace: perfume-staging }

@@ -9,8 +9,8 @@ resources:
   - externalsecret.yaml
   - gateway.yaml
 images:
-  - { name: perfume-api, newName: ghcr.io/OWNER/perfume-api, newTag: sha-0000000 }
-  - { name: perfume-web, newName: ghcr.io/OWNER/perfume-web, newTag: sha-0000000 }
+  - { name: perfume-api, newName: ghcr.io/pamolowo/perfume-api, newTag: sha-0000000 }
+  - { name: perfume-web, newName: ghcr.io/pamolowo/perfume-web, newTag: sha-0000000 }
 patches:
   - target: { kind: ConfigMap, name: perfume-config }
     patch: |-

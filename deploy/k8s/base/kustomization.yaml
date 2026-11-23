@@ -13,8 +13,8 @@ resources:
   - httproutes.yaml
 images:
   - name: perfume-api
-    newName: ghcr.io/OWNER/perfume-api
+    newName: ghcr.io/pamolowo/perfume-api
     newTag: edge
   - name: perfume-web
-    newName: ghcr.io/OWNER/perfume-web
+    newName: ghcr.io/pamolowo/perfume-web
     newTag: edge

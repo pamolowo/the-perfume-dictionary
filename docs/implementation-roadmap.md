@@ -27,5 +27,5 @@ Hosting path (ADR 0007): **local** (compose, kind) → **free cloud** (Vercel Ho
 | 13 | Advanced AI | Recommendations, grounded LLM explanations | Model serving, cost/latency budgets, evaluation gates |
 
 ## Decisions still open
-- GitHub repository name/owner (manifests use the placeholder `OWNER`).
+- ~~GitHub repository~~ → `github.com/pamolowo/the-perfume-dictionary`, images at `ghcr.io/pamolowo/perfume-*`.
 - When to move from free tiers (trigger: monetisation in Phase 7, or limits reached).
