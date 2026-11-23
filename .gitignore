@@ -25,3 +25,5 @@ blob-report/
 .DS_Store
 .idea/
 *.log
+build/
+dist/
