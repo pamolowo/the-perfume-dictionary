@@ -8,6 +8,7 @@ resources:
   - namespace.yaml
   - postgres.yaml
   - gateway.yaml
+  - seed-job.yaml
 images:
   - { name: perfume-api, newName: perfume-api, newTag: local }
   - { name: perfume-web, newName: perfume-web, newTag: local }

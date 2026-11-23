@@ -23,6 +23,10 @@ install: ## Install API (venv) and web dependencies
 	npm ci
 dev-api: ## Run the API with reload (needs Postgres and .env)
 	cd apps/api && .venv/bin/alembic upgrade head && .venv/bin/uvicorn app.main:app --reload
+seed: ## Load reference data + SYNTHETIC demo catalogue (idempotent)
+	cd apps/api && .venv/bin/python -m app.seed
+migration: ## Autogenerate a migration: make migration m="add perfume launch date"
+	cd apps/api && .venv/bin/alembic revision --autogenerate -m "$(m)"
 dev-web: ## Run the website with hot reload
 	npm run dev:web
 
@@ -50,4 +54,4 @@ k8s-deploy: ## Rebuild images and redeploy to the kind cluster
 k8s-down: ## Delete the kind cluster
 	scripts/k8s-local.sh down
 
-.PHONY: help up down reset logs install dev-api dev-web lint test e2e api-types k8s-validate k8s-up k8s-deploy k8s-down
+.PHONY: help up down reset logs install dev-api seed migration dev-web lint test e2e api-types k8s-validate k8s-up k8s-deploy k8s-down
