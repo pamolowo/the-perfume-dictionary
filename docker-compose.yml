@@ -1,0 +1,65 @@
+# Local development stack: the same images CI builds and Kubernetes runs.
+#   make up      build and start everything (db → migrate → api → web)
+#   make logs    follow logs     ·    make down    stop
+name: perfume
+
+x-api-env: &api-env
+  DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@db:5432/perfume
+  ENVIRONMENT: local
+  CORS_ORIGINS: '["http://localhost:3000"]'
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: perfume
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d perfume"]
+      interval: 3s
+      retries: 20
+
+  migrate:
+    image: perfume-api:local
+    build: { context: apps/api }
+    command: ["alembic", "upgrade", "head"]
+    environment: *api-env
+    depends_on:
+      db: { condition: service_healthy }
+    restart: "no"
+
+  api:
+    image: perfume-api:local
+    build:
+      context: apps/api
+      args: { APP_VERSION: "${APP_VERSION:-0.0.0-dev}", GIT_SHA: "${GIT_SHA:-local}" }
+    environment: *api-env
+    ports: ["8000:8000"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)"]
+      interval: 5s
+      retries: 20
+
+  web:
+    image: perfume-web:local
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args: { APP_VERSION: "${APP_VERSION:-0.0.0-dev}", GIT_SHA: "${GIT_SHA:-local}", NEXT_PUBLIC_SITE_URL: "http://localhost:3000" }
+    environment:
+      API_URL: http://api:8000
+    ports: ["3000:3000"]
+    depends_on:
+      api: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      retries: 20
+
+volumes:
+  pgdata:

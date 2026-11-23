@@ -1,0 +1,16 @@
+# Build context for apps/web/Dockerfile is the repo root: send only what the web build needs.
+**/node_modules
+**/.next
+**/.git
+**/test-results
+**/playwright-report
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+!**/.env.example
+apps/api
+deploy
+infrastructure
+docs
+scripts
+.github
