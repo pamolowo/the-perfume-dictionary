@@ -36,21 +36,25 @@ Terraform; Prometheus/Grafana/Loki/OpenTelemetry; pytest, Vitest, Playwright.
 18. Containers run as non-root with a read-only root filesystem and no capabilities.
 19. Pin versions: GitHub Actions by commit SHA, base images by tag (Dependabot keeps them current), add-ons by release.
 20. Any change to the API schema regenerates `packages/api-client` in the same PR (CI fails on drift).
+21. Every model change ships with an Alembic migration in the same PR (CI runs `alembic check`).
+22. The seed loads SYNTHETIC data: local, CI and previews only — never production.
+23. No paid infrastructure without owner approval (ADR 0007). Vercel Hobby is non-commercial: leave it before
+    adding affiliate links, ads or other monetisation.
 
 ## Product source of truth
 `docs/prd/PRD-v3.md` (PRD v3.0). Phase plan: `docs/implementation-roadmap.md`. Decisions: `docs/decisions/`.
 
 ## AI rules (PRD v3)
-21. Mixer weights are virtual preference weights, never chemical formulation percentages.
-22. Never present predicted longevity, sillage or layering results as measured performance or chemical behaviour.
-23. LLM explanations may only use retrieved catalogue facts and computed results; always keep a deterministic fallback.
-24. Ranking changes require evaluation against human relevance judgements and a regression run.
+24. Mixer weights are virtual preference weights, never chemical formulation percentages.
+25. Never present predicted longevity, sillage or layering results as measured performance or chemical behaviour.
+26. LLM explanations may only use retrieved catalogue facts and computed results; always keep a deterministic fallback.
+27. Ranking changes require evaluation against human relevance judgements and a regression run.
 
-## Alternatives / "Dupes" rules (PRD v3) — feature is behind a legal gate (ADR 0006)
-25. Never label a perfume a dupe from note/accord overlap alone; algorithmic results are labelled as suggestions
-    with score, model version and confidence.
-26. Price filters and orders alternatives; it is never evidence of scent similarity.
-27. Sponsored placements are separate from organic rankings and never alter similarity scores or labels.
+## Similar Perfumes rules (ADR 0006) — never "dupe" / "inspired by"; launch after legal sign-off
+28. Never use "dupe", "clone", "smells like" or "inspired by" labels. Results are algorithmic suggestions with
+    score, model version and confidence.
+29. Price filters and orders alternatives; it is never evidence of scent similarity.
+30. Sponsored placements are separate from organic rankings and never alter similarity scores or labels.
 
 ## API
 All public endpoints live under `/api/v1`. Breaking changes need `/api/v2`.
