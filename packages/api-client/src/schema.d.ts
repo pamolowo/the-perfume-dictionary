@@ -4,6 +4,108 @@
  */
 
 export interface paths {
+    "/api/v1/accords": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Accords dictionary */
+        get: operations["list_accords_api_v1_accords_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accords/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Accord with the perfumes where it is most prominent */
+        get: operations["get_accord_api_v1_accords__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/brands": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Brands */
+        get: operations["list_brands_api_v1_brands_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/brands/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Brand */
+        get: operations["get_brand_api_v1_brands__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/data-sources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Data sources, licences and synthetic flags */
+        get: operations["data_sources_api_v1_data_sources_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/families": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Families */
+        get: operations["list_families_api_v1_families_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/meta": {
         parameters: {
             query?: never;
@@ -13,6 +115,125 @@ export interface paths {
         };
         /** What is running: version, commit and environment */
         get: operations["meta_api_v1_meta_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Notes dictionary */
+        get: operations["list_notes_api_v1_notes_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notes/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Note profile (slug, id or alias, e.g. 'orris' → iris) */
+        get: operations["get_note_api_v1_notes__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/perfumers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Perfumers */
+        get: operations["list_perfumers_api_v1_perfumers_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/perfumers/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Perfumer */
+        get: operations["get_perfumer_api_v1_perfumers__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/perfumes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search, filter, sort and paginate perfumes */
+        get: operations["list_perfumes_api_v1_perfumes_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/perfumes/{id_or_slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Perfume profile */
+        get: operations["get_perfume_api_v1_perfumes__id_or_slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search across the catalogue */
+        get: operations["search_api_v1_search_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -59,6 +280,163 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AccordDetail */
+        AccordDetail: {
+            /** Description */
+            description: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Perfumes */
+            perfumes: components["schemas"]["PerfumeSummary"][];
+            /** Slug */
+            slug: string;
+        };
+        /** AccordOut */
+        AccordOut: {
+            /** Description */
+            description: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+        };
+        /** BrandDetail */
+        BrandDetail: {
+            /** Country */
+            country: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /**
+             * Perfume Count
+             * @default 0
+             */
+            perfume_count: number;
+            /** Perfumes */
+            perfumes: components["schemas"]["PerfumeSummary"][];
+            /** Slug */
+            slug: string;
+            /** Website */
+            website: string | null;
+        };
+        /** BrandOut */
+        BrandOut: {
+            /** Country */
+            country: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /**
+             * Perfume Count
+             * @default 0
+             */
+            perfume_count: number;
+            /** Slug */
+            slug: string;
+            /** Website */
+            website: string | null;
+        };
+        /** BrandSummary */
+        BrandSummary: {
+            /** Country */
+            country: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+        };
+        /**
+         * Concentration
+         * @enum {string}
+         */
+        Concentration: "extrait" | "parfum" | "edp" | "edt" | "edc" | "cologne" | "body_mist" | "oil" | "other";
+        /** DataSourceOut */
+        DataSourceOut: {
+            /** Access Method */
+            access_method: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Licence */
+            licence: string;
+            /** Name */
+            name: string;
+            /** Redistribution Allowed */
+            redistribution_allowed: boolean;
+            /** Slug */
+            slug: string;
+        };
+        /** ErrorBody */
+        ErrorBody: {
+            /** Code */
+            code: string;
+            /** Details */
+            details?: unknown | null;
+            /** Message */
+            message: string;
+        };
+        /** ErrorResponse */
+        ErrorResponse: {
+            error: components["schemas"]["ErrorBody"];
+        };
+        /** FamilyOut */
+        FamilyOut: {
+            /** Description */
+            description: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
         /** HealthOut */
         HealthOut: {
             /**
@@ -91,6 +469,207 @@ export interface components {
              */
             status: "not_ready";
         };
+        /** NoteDetail */
+        NoteDetail: {
+            /** Aliases */
+            aliases: string[];
+            /** Description */
+            description: string | null;
+            /** Family */
+            family: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Perfumes */
+            perfumes: components["schemas"]["PerfumeSummary"][];
+            /** Slug */
+            slug: string;
+            tier: components["schemas"]["NotePosition"] | null;
+        };
+        /** NoteOut */
+        NoteOut: {
+            /** Aliases */
+            aliases: string[];
+            /** Description */
+            description: string | null;
+            /** Family */
+            family: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+            tier: components["schemas"]["NotePosition"] | null;
+        };
+        /**
+         * NotePosition
+         * @enum {string}
+         */
+        NotePosition: "top" | "heart" | "base";
+        /** PageInfo */
+        PageInfo: {
+            /**
+             * Has More
+             * @default false
+             */
+            has_more: boolean;
+            /** Limit */
+            limit: number;
+            /** Next Cursor */
+            next_cursor: string | null;
+        };
+        /** Page[BrandOut] */
+        Page_BrandOut_: {
+            /** Data */
+            data: components["schemas"]["BrandOut"][];
+            page: components["schemas"]["PageInfo"];
+        };
+        /** Page[NoteOut] */
+        Page_NoteOut_: {
+            /** Data */
+            data: components["schemas"]["NoteOut"][];
+            page: components["schemas"]["PageInfo"];
+        };
+        /** Page[PerfumeSummary] */
+        Page_PerfumeSummary_: {
+            /** Data */
+            data: components["schemas"]["PerfumeSummary"][];
+            page: components["schemas"]["PageInfo"];
+        };
+        /** Page[PerfumerOut] */
+        Page_PerfumerOut_: {
+            /** Data */
+            data: components["schemas"]["PerfumerOut"][];
+            page: components["schemas"]["PageInfo"];
+        };
+        /** PerfumeAccordOut */
+        PerfumeAccordOut: {
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+            /**
+             * Strength
+             * @description Relative prominence 1–100 (editorial/source data, not a measurement)
+             */
+            strength: number;
+        };
+        /** PerfumeDetail */
+        PerfumeDetail: {
+            /** Accords */
+            accords: components["schemas"]["PerfumeAccordOut"][];
+            brand: components["schemas"]["BrandSummary"];
+            data_source: components["schemas"]["DataSourceOut"] | null;
+            /** Description */
+            description: string | null;
+            family: components["schemas"]["FamilyOut"] | null;
+            /** Gender Positioning */
+            gender_positioning: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            notes: components["schemas"]["Pyramid"];
+            /** Perfumers */
+            perfumers: components["schemas"]["PerfumerOut"][];
+            /** Release Year */
+            release_year: number | null;
+            /** Slug */
+            slug: string;
+            /** Variants */
+            variants: components["schemas"]["VariantOut"][];
+        };
+        /** PerfumeSummary */
+        PerfumeSummary: {
+            brand: components["schemas"]["BrandSummary"];
+            family: components["schemas"]["FamilyOut"] | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /** Release Year */
+            release_year: number | null;
+            /** Slug */
+            slug: string;
+        };
+        /** PerfumerDetail */
+        PerfumerDetail: {
+            /** Bio */
+            bio: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /** Perfumes */
+            perfumes: components["schemas"]["PerfumeSummary"][];
+            /** Slug */
+            slug: string;
+        };
+        /** PerfumerOut */
+        PerfumerOut: {
+            /** Bio */
+            bio: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Last Verified At */
+            last_verified_at: string | null;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+        };
+        /** Pyramid */
+        Pyramid: {
+            /** Base */
+            base: components["schemas"]["PyramidNote"][];
+            /** Heart */
+            heart: components["schemas"]["PyramidNote"][];
+            /** Top */
+            top: components["schemas"]["PyramidNote"][];
+        };
+        /** PyramidNote */
+        PyramidNote: {
+            /** Family */
+            family: string;
+            /** Name */
+            name: string;
+            /** Slug */
+            slug: string;
+        };
         /** ReadyOut */
         ReadyOut: {
             /**
@@ -106,6 +685,52 @@ export interface components {
              */
             status: "ready";
         };
+        /** SearchResults */
+        SearchResults: {
+            /** Brands */
+            brands: components["schemas"]["BrandSummary"][];
+            /** Notes */
+            notes: components["schemas"]["NoteOut"][];
+            /** Perfumers */
+            perfumers: components["schemas"]["PerfumerOut"][];
+            /** Perfumes */
+            perfumes: components["schemas"]["PerfumeSummary"][];
+            /** Query */
+            query: string;
+        };
+        /** ValidationError */
+        ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
+        /** VariantOut */
+        VariantOut: {
+            concentration: components["schemas"]["Concentration"];
+            /**
+             * Edition
+             * @default
+             */
+            edition: string;
+            /** Gtin */
+            gtin: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Synthetic */
+            is_synthetic: boolean;
+            /** Volume Ml */
+            volume_ml: number;
+        };
     };
     responses: never;
     parameters: never;
@@ -115,6 +740,269 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    list_accords_api_v1_accords_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccordOut"][];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    get_accord_api_v1_accords__slug__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccordDetail"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_brands_api_v1_brands_get: {
+        parameters: {
+            query?: {
+                q?: string | null;
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_BrandOut_"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_brand_api_v1_brands__slug__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BrandDetail"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    data_sources_api_v1_data_sources_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DataSourceOut"][];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    list_families_api_v1_families_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FamilyOut"][];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     meta_api_v1_meta_get: {
         parameters: {
             query?: never;
@@ -131,6 +1019,372 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MetaOut"];
+                };
+            };
+        };
+    };
+    list_notes_api_v1_notes_get: {
+        parameters: {
+            query?: {
+                family?: string | null;
+                tier?: components["schemas"]["NotePosition"] | null;
+                q?: string | null;
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_NoteOut_"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_note_api_v1_notes__slug__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NoteDetail"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_perfumers_api_v1_perfumers_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_PerfumerOut_"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_perfumer_api_v1_perfumers__slug__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PerfumerDetail"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_perfumes_api_v1_perfumes_get: {
+        parameters: {
+            query?: {
+                /** @description Perfume name, house or note (aliases included) contains */
+                q?: string | null;
+                /** @description Brand slug */
+                brand?: string | null;
+                /** @description Note slug */
+                note?: string | null;
+                /** @description Family slug */
+                family?: string | null;
+                /** @description Perfumer slug */
+                perfumer?: string | null;
+                /** @description Accord slug */
+                accord?: string | null;
+                concentration?: components["schemas"]["Concentration"] | null;
+                year_from?: number | null;
+                year_to?: number | null;
+                sort?: "name" | "release_year" | "-release_year";
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_PerfumeSummary_"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_perfume_api_v1_perfumes__id_or_slug__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id_or_slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PerfumeDetail"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    search_api_v1_search_get: {
+        parameters: {
+            query: {
+                q: string;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SearchResults"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
