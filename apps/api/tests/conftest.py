@@ -3,9 +3,9 @@ import os
 
 TEST_DB = os.environ.get("TEST_DATABASE_URL", "postgresql+psycopg://postgres:postgres@localhost:5432/perfume_test")
 os.environ["DATABASE_URL"] = TEST_DB
-os.environ.setdefault("APP_VERSION", "9.9.9-test")
-os.environ.setdefault("GIT_SHA", "abc1234")
-os.environ.setdefault("ENVIRONMENT", "ci")
+os.environ["APP_VERSION"] = "9.9.9-test"
+os.environ["GIT_SHA"] = "abc1234"
+os.environ["ENVIRONMENT"] = "ci"
 
 from pathlib import Path  # noqa: E402
 
@@ -41,3 +41,13 @@ def client(migrated):
 
     with TestClient(create_app()) as c:
         yield c
+
+
+@pytest.fixture(scope="session")
+def seeded(client):
+    """Catalogue loaded with the SYNTHETIC fixtures (the same command the seed job runs)."""
+    from app.db import SessionLocal
+    from app.seed.__main__ import seed
+
+    with SessionLocal() as db:
+        return seed(db)

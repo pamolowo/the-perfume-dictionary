@@ -14,7 +14,12 @@ def test_liveness(client):
 def test_readiness_reports_database_and_migration(client):
     r = client.get("/health/ready")
     assert r.status_code == 200
-    assert r.json() == {"status": "ready", "database": "ok", "migration": "0000"}
+    from alembic.script import ScriptDirectory
+
+    from tests.conftest import alembic_cfg
+
+    head = ScriptDirectory.from_config(alembic_cfg()).get_current_head()
+    assert r.json() == {"status": "ready", "database": "ok", "migration": head}
 
 
 def test_meta_reports_build_identity(client):
