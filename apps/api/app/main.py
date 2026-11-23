@@ -3,8 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core import observability
 from app.core.config import get_settings
+from app.core.errors import register_error_handlers
 from app.core.logging import configure_logging
-from app.routers import system
+from app.routers import catalogue, system
 
 
 def create_app() -> FastAPI:
@@ -14,7 +15,9 @@ def create_app() -> FastAPI:
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST"],
                        allow_headers=["*"])
     observability.install(app)
+    register_error_handlers(app)
     app.include_router(system.router)
+    app.include_router(catalogue.router)
     return app
 
 

@@ -1,6 +1,439 @@
 {
  "components": {
   "schemas": {
+   "AccordDetail": {
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "perfumes": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Perfumes",
+      "type": "array"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "description",
+     "perfumes"
+    ],
+    "title": "AccordDetail",
+    "type": "object"
+   },
+   "AccordOut": {
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "description"
+    ],
+    "title": "AccordOut",
+    "type": "object"
+   },
+   "BrandDetail": {
+    "properties": {
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "perfume_count": {
+      "default": 0,
+      "title": "Perfume Count",
+      "type": "integer"
+     },
+     "perfumes": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Perfumes",
+      "type": "array"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "website": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Website"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "country",
+     "is_synthetic",
+     "last_verified_at",
+     "website",
+     "perfume_count",
+     "perfumes"
+    ],
+    "title": "BrandDetail",
+    "type": "object"
+   },
+   "BrandOut": {
+    "properties": {
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "perfume_count": {
+      "default": 0,
+      "title": "Perfume Count",
+      "type": "integer"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "website": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Website"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "country",
+     "is_synthetic",
+     "last_verified_at",
+     "website",
+     "perfume_count"
+    ],
+    "title": "BrandOut",
+    "type": "object"
+   },
+   "BrandSummary": {
+    "properties": {
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "country",
+     "is_synthetic",
+     "last_verified_at"
+    ],
+    "title": "BrandSummary",
+    "type": "object"
+   },
+   "Concentration": {
+    "enum": [
+     "extrait",
+     "parfum",
+     "edp",
+     "edt",
+     "edc",
+     "cologne",
+     "body_mist",
+     "oil",
+     "other"
+    ],
+    "title": "Concentration",
+    "type": "string"
+   },
+   "DataSourceOut": {
+    "properties": {
+     "access_method": {
+      "title": "Access Method",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "licence": {
+      "title": "Licence",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "redistribution_allowed": {
+      "title": "Redistribution Allowed",
+      "type": "boolean"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "access_method",
+     "licence",
+     "redistribution_allowed",
+     "is_synthetic"
+    ],
+    "title": "DataSourceOut",
+    "type": "object"
+   },
+   "ErrorBody": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "details": {
+      "anyOf": [
+       {},
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Details"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "message"
+    ],
+    "title": "ErrorBody",
+    "type": "object"
+   },
+   "ErrorResponse": {
+    "properties": {
+     "error": {
+      "$ref": "#/components/schemas/ErrorBody"
+     }
+    },
+    "required": [
+     "error"
+    ],
+    "title": "ErrorResponse",
+    "type": "object"
+   },
+   "FamilyOut": {
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "description"
+    ],
+    "title": "FamilyOut",
+    "type": "object"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
    "HealthOut": {
     "properties": {
      "status": {
@@ -63,6 +496,650 @@
     "title": "NotReadyOut",
     "type": "object"
    },
+   "NoteDetail": {
+    "properties": {
+     "aliases": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Aliases",
+      "type": "array"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "family": {
+      "title": "Family",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "perfumes": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Perfumes",
+      "type": "array"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "tier": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/NotePosition"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "family",
+     "tier",
+     "description",
+     "aliases",
+     "perfumes"
+    ],
+    "title": "NoteDetail",
+    "type": "object"
+   },
+   "NoteOut": {
+    "properties": {
+     "aliases": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Aliases",
+      "type": "array"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "family": {
+      "title": "Family",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "tier": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/NotePosition"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "family",
+     "tier",
+     "description",
+     "aliases"
+    ],
+    "title": "NoteOut",
+    "type": "object"
+   },
+   "NotePosition": {
+    "enum": [
+     "top",
+     "heart",
+     "base"
+    ],
+    "title": "NotePosition",
+    "type": "string"
+   },
+   "PageInfo": {
+    "properties": {
+     "has_more": {
+      "default": false,
+      "title": "Has More",
+      "type": "boolean"
+     },
+     "limit": {
+      "title": "Limit",
+      "type": "integer"
+     },
+     "next_cursor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Cursor"
+     }
+    },
+    "required": [
+     "limit",
+     "next_cursor",
+     "has_more"
+    ],
+    "title": "PageInfo",
+    "type": "object"
+   },
+   "Page_BrandOut_": {
+    "properties": {
+     "data": {
+      "items": {
+       "$ref": "#/components/schemas/BrandOut"
+      },
+      "title": "Data",
+      "type": "array"
+     },
+     "page": {
+      "$ref": "#/components/schemas/PageInfo"
+     }
+    },
+    "required": [
+     "data",
+     "page"
+    ],
+    "title": "Page[BrandOut]",
+    "type": "object"
+   },
+   "Page_NoteOut_": {
+    "properties": {
+     "data": {
+      "items": {
+       "$ref": "#/components/schemas/NoteOut"
+      },
+      "title": "Data",
+      "type": "array"
+     },
+     "page": {
+      "$ref": "#/components/schemas/PageInfo"
+     }
+    },
+    "required": [
+     "data",
+     "page"
+    ],
+    "title": "Page[NoteOut]",
+    "type": "object"
+   },
+   "Page_PerfumeSummary_": {
+    "properties": {
+     "data": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Data",
+      "type": "array"
+     },
+     "page": {
+      "$ref": "#/components/schemas/PageInfo"
+     }
+    },
+    "required": [
+     "data",
+     "page"
+    ],
+    "title": "Page[PerfumeSummary]",
+    "type": "object"
+   },
+   "Page_PerfumerOut_": {
+    "properties": {
+     "data": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumerOut"
+      },
+      "title": "Data",
+      "type": "array"
+     },
+     "page": {
+      "$ref": "#/components/schemas/PageInfo"
+     }
+    },
+    "required": [
+     "data",
+     "page"
+    ],
+    "title": "Page[PerfumerOut]",
+    "type": "object"
+   },
+   "PerfumeAccordOut": {
+    "properties": {
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "strength": {
+      "description": "Relative prominence 1\u2013100 (editorial/source data, not a measurement)",
+      "title": "Strength",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "strength"
+    ],
+    "title": "PerfumeAccordOut",
+    "type": "object"
+   },
+   "PerfumeDetail": {
+    "properties": {
+     "accords": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeAccordOut"
+      },
+      "title": "Accords",
+      "type": "array"
+     },
+     "brand": {
+      "$ref": "#/components/schemas/BrandSummary"
+     },
+     "data_source": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/DataSourceOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "family": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/FamilyOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "gender_positioning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Gender Positioning"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "notes": {
+      "$ref": "#/components/schemas/Pyramid"
+     },
+     "perfumers": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumerOut"
+      },
+      "title": "Perfumers",
+      "type": "array"
+     },
+     "release_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Release Year"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "variants": {
+      "items": {
+       "$ref": "#/components/schemas/VariantOut"
+      },
+      "title": "Variants",
+      "type": "array"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "release_year",
+     "brand",
+     "family",
+     "is_synthetic",
+     "last_verified_at",
+     "description",
+     "gender_positioning",
+     "variants",
+     "notes",
+     "accords",
+     "perfumers",
+     "data_source"
+    ],
+    "title": "PerfumeDetail",
+    "type": "object"
+   },
+   "PerfumeSummary": {
+    "properties": {
+     "brand": {
+      "$ref": "#/components/schemas/BrandSummary"
+     },
+     "family": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/FamilyOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "release_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Release Year"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "release_year",
+     "brand",
+     "family",
+     "is_synthetic",
+     "last_verified_at"
+    ],
+    "title": "PerfumeSummary",
+    "type": "object"
+   },
+   "PerfumerDetail": {
+    "properties": {
+     "bio": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bio"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "perfumes": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Perfumes",
+      "type": "array"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "bio",
+     "is_synthetic",
+     "last_verified_at",
+     "perfumes"
+    ],
+    "title": "PerfumerDetail",
+    "type": "object"
+   },
+   "PerfumerOut": {
+    "properties": {
+     "bio": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bio"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "last_verified_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Verified At"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "bio",
+     "is_synthetic",
+     "last_verified_at"
+    ],
+    "title": "PerfumerOut",
+    "type": "object"
+   },
+   "Pyramid": {
+    "properties": {
+     "base": {
+      "items": {
+       "$ref": "#/components/schemas/PyramidNote"
+      },
+      "title": "Base",
+      "type": "array"
+     },
+     "heart": {
+      "items": {
+       "$ref": "#/components/schemas/PyramidNote"
+      },
+      "title": "Heart",
+      "type": "array"
+     },
+     "top": {
+      "items": {
+       "$ref": "#/components/schemas/PyramidNote"
+      },
+      "title": "Top",
+      "type": "array"
+     }
+    },
+    "required": [
+     "top",
+     "heart",
+     "base"
+    ],
+    "title": "Pyramid",
+    "type": "object"
+   },
+   "PyramidNote": {
+    "properties": {
+     "family": {
+      "title": "Family",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "family"
+    ],
+    "title": "PyramidNote",
+    "type": "object"
+   },
    "ReadyOut": {
     "properties": {
      "database": {
@@ -94,6 +1171,137 @@
     ],
     "title": "ReadyOut",
     "type": "object"
+   },
+   "SearchResults": {
+    "properties": {
+     "brands": {
+      "items": {
+       "$ref": "#/components/schemas/BrandSummary"
+      },
+      "title": "Brands",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "$ref": "#/components/schemas/NoteOut"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "perfumers": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumerOut"
+      },
+      "title": "Perfumers",
+      "type": "array"
+     },
+     "perfumes": {
+      "items": {
+       "$ref": "#/components/schemas/PerfumeSummary"
+      },
+      "title": "Perfumes",
+      "type": "array"
+     },
+     "query": {
+      "title": "Query",
+      "type": "string"
+     }
+    },
+    "required": [
+     "query",
+     "perfumes",
+     "brands",
+     "notes",
+     "perfumers"
+    ],
+    "title": "SearchResults",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   },
+   "VariantOut": {
+    "properties": {
+     "concentration": {
+      "$ref": "#/components/schemas/Concentration"
+     },
+     "edition": {
+      "default": "",
+      "title": "Edition",
+      "type": "string"
+     },
+     "gtin": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Gtin"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_synthetic": {
+      "title": "Is Synthetic",
+      "type": "boolean"
+     },
+     "volume_ml": {
+      "title": "Volume Ml",
+      "type": "number"
+     }
+    },
+    "required": [
+     "id",
+     "concentration",
+     "volume_ml",
+     "gtin",
+     "edition",
+     "is_synthetic"
+    ],
+    "title": "VariantOut",
+    "type": "object"
    }
   }
  },
@@ -103,6 +1311,363 @@
  },
  "openapi": "3.1.0",
  "paths": {
+  "/api/v1/accords": {
+   "get": {
+    "operationId": "list_accords_api_v1_accords_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AccordOut"
+         },
+         "title": "Response List Accords Api V1 Accords Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     }
+    },
+    "summary": "Accords dictionary",
+    "tags": [
+     "accords"
+    ]
+   }
+  },
+  "/api/v1/accords/{slug}": {
+   "get": {
+    "operationId": "get_accord_api_v1_accords__slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccordDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Accord with the perfumes where it is most prominent",
+    "tags": [
+     "accords"
+    ]
+   }
+  },
+  "/api/v1/brands": {
+   "get": {
+    "operationId": "list_brands_api_v1_brands_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 100,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "cursor",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cursor"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Page_BrandOut_"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Brands",
+    "tags": [
+     "brands"
+    ]
+   }
+  },
+  "/api/v1/brands/{slug}": {
+   "get": {
+    "operationId": "get_brand_api_v1_brands__slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BrandDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Brand",
+    "tags": [
+     "brands"
+    ]
+   }
+  },
+  "/api/v1/data-sources": {
+   "get": {
+    "operationId": "data_sources_api_v1_data_sources_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/DataSourceOut"
+         },
+         "title": "Response Data Sources Api V1 Data Sources Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     }
+    },
+    "summary": "Data sources, licences and synthetic flags",
+    "tags": [
+     "provenance"
+    ]
+   }
+  },
+  "/api/v1/families": {
+   "get": {
+    "operationId": "list_families_api_v1_families_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/FamilyOut"
+         },
+         "title": "Response List Families Api V1 Families Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     }
+    },
+    "summary": "List Families",
+    "tags": [
+     "families"
+    ]
+   }
+  },
   "/api/v1/meta": {
    "get": {
     "operationId": "meta_api_v1_meta_get",
@@ -121,6 +1686,737 @@
     "summary": "What is running: version, commit and environment",
     "tags": [
      "system"
+    ]
+   }
+  },
+  "/api/v1/notes": {
+   "get": {
+    "operationId": "list_notes_api_v1_notes_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "family",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Family"
+      }
+     },
+     {
+      "in": "query",
+      "name": "tier",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/NotePosition"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Tier"
+      }
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 100,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 100,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "cursor",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cursor"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Page_NoteOut_"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Notes dictionary",
+    "tags": [
+     "notes"
+    ]
+   }
+  },
+  "/api/v1/notes/{slug}": {
+   "get": {
+    "operationId": "get_note_api_v1_notes__slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NoteDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Note profile (slug, id or alias, e.g. 'orris' \u2192 iris)",
+    "tags": [
+     "notes"
+    ]
+   }
+  },
+  "/api/v1/perfumers": {
+   "get": {
+    "operationId": "list_perfumers_api_v1_perfumers_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "cursor",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cursor"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Page_PerfumerOut_"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Perfumers",
+    "tags": [
+     "perfumers"
+    ]
+   }
+  },
+  "/api/v1/perfumers/{slug}": {
+   "get": {
+    "operationId": "get_perfumer_api_v1_perfumers__slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PerfumerDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Perfumer",
+    "tags": [
+     "perfumers"
+    ]
+   }
+  },
+  "/api/v1/perfumes": {
+   "get": {
+    "operationId": "list_perfumes_api_v1_perfumes_get",
+    "parameters": [
+     {
+      "description": "Perfume name, house or note (aliases included) contains",
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 100,
+         "minLength": 1,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Perfume name, house or note (aliases included) contains",
+       "title": "Q"
+      }
+     },
+     {
+      "description": "Brand slug",
+      "in": "query",
+      "name": "brand",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Brand slug",
+       "title": "Brand"
+      }
+     },
+     {
+      "description": "Note slug",
+      "in": "query",
+      "name": "note",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Note slug",
+       "title": "Note"
+      }
+     },
+     {
+      "description": "Family slug",
+      "in": "query",
+      "name": "family",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Family slug",
+       "title": "Family"
+      }
+     },
+     {
+      "description": "Perfumer slug",
+      "in": "query",
+      "name": "perfumer",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Perfumer slug",
+       "title": "Perfumer"
+      }
+     },
+     {
+      "description": "Accord slug",
+      "in": "query",
+      "name": "accord",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Accord slug",
+       "title": "Accord"
+      }
+     },
+     {
+      "in": "query",
+      "name": "concentration",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/Concentration"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Concentration"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_from",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1700,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year From"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_to",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1700,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year To"
+      }
+     },
+     {
+      "in": "query",
+      "name": "sort",
+      "required": false,
+      "schema": {
+       "default": "name",
+       "enum": [
+        "name",
+        "release_year",
+        "-release_year"
+       ],
+       "title": "Sort",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 20,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "cursor",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cursor"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Page_PerfumeSummary_"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Search, filter, sort and paginate perfumes",
+    "tags": [
+     "perfumes"
+    ]
+   }
+  },
+  "/api/v1/perfumes/{id_or_slug}": {
+   "get": {
+    "operationId": "get_perfume_api_v1_perfumes__id_or_slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "id_or_slug",
+      "required": true,
+      "schema": {
+       "title": "Id Or Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PerfumeDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Perfume profile",
+    "tags": [
+     "perfumes"
+    ]
+   }
+  },
+  "/api/v1/search": {
+   "get": {
+    "operationId": "search_api_v1_search_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "q",
+      "required": true,
+      "schema": {
+       "maxLength": 100,
+       "minLength": 1,
+       "title": "Q",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 8,
+       "maximum": 25,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SearchResults"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "400": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Bad Request"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Search across the catalogue",
+    "tags": [
+     "search"
     ]
    }
   },

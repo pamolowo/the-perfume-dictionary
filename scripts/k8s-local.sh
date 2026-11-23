@@ -33,9 +33,11 @@ deploy() {
   # 1) namespace + database first, 2) migrations, 3) everything else — the same order Argo CD's PreSync hook gives.
   echo "$manifests" | kubectl apply -f - --selector='app.kubernetes.io/component!=migration'
   kubectl -n "$NS" wait --for=condition=Ready cluster.postgresql.cnpg.io/perfume-db --timeout=300s
-  kubectl -n "$NS" delete job perfume-migrate --ignore-not-found
-  echo "$manifests" | kubectl apply -f -
+  kubectl -n "$NS" delete job perfume-migrate perfume-seed --ignore-not-found
+  echo "$manifests" | kubectl apply -f - --selector='app.kubernetes.io/name=perfume-migrate'
   kubectl -n "$NS" wait --for=condition=Complete job/perfume-migrate --timeout=300s
+  echo "$manifests" | kubectl apply -f -
+  kubectl -n "$NS" wait --for=condition=Complete job/perfume-seed --timeout=300s
   kubectl -n "$NS" rollout restart deployment/perfume-api deployment/perfume-web
   kubectl -n "$NS" rollout status deployment/perfume-api --timeout=300s
   kubectl -n "$NS" rollout status deployment/perfume-web --timeout=300s

@@ -1,0 +1,113 @@
+"""SYNTHETIC catalogue fixtures. Every brand, perfumer and perfume here is fictional and flagged is_synthetic.
+Notes and accords are reference data from app/data/note_reference.json."""
+
+SYNTHETIC_SOURCE = {
+    "name": "Synthetic development fixtures", "slug": "synthetic-fixtures", "access_method": "synthetic",
+    "licence": "Fictional data generated for development and testing. Not real products. Do not publish as live.",
+    "redistribution_allowed": False, "is_synthetic": True,
+}
+REFERENCE_SOURCE = {
+    "name": "Curated note & accord reference", "slug": "curated-note-reference", "access_method": "manual",
+    "licence": "Internal curated reference of generic perfumery material names and accords.",
+    "redistribution_allowed": True, "is_synthetic": False,
+}
+
+FAMILIES = [
+    ("Fresh", "fresh", "Citrus, aromatic, green and aquatic fragrances."),
+    ("Floral", "floral", "Rose, white flowers, powdery and fruity florals."),
+    ("Amber", "amber", "Warm resins, spices and balsams (formerly 'oriental')."),
+    ("Woody", "woody", "Cedar, sandalwood, vetiver, oud and earthy woods."),
+    ("Gourmand", "gourmand", "Edible notes: vanilla, caramel, tonka, coffee."),
+    ("Chypre", "chypre", "Citrus top contrasted with oakmoss, patchouli and resins."),
+    ("Fougère", "fougere", "Lavender, coumarin and moss — the barbershop structure."),
+    ("Leather", "leather", "Suede, birch tar and smoky leathers."),
+]
+
+
+BRANDS = [
+    ("Maison Exemplar", "maison-exemplar", "FR"), ("Atelier Nimbus", "atelier-nimbus", "GB"),
+    ("Casa Ficta", "casa-ficta", "IT"), ("Northwind Parfums", "northwind-parfums", "SE"),
+    ("Saffron & Sable", "saffron-and-sable", "AE"), ("Lumen Botanica", "lumen-botanica", "US"),
+    ("Kōri Studio", "kori-studio", "JP"), ("Ivory Lane", "ivory-lane", "NG"),
+]
+
+PERFUMERS = [
+    ("Aurelie Testard", "aurelie-testard"), ("Jonah Placeholder", "jonah-placeholder"),
+    ("Mira Synthea", "mira-synthea"), ("Tomás Demo", "tomas-demo"), ("Ada Fixture", "ada-fixture"),
+]
+
+# (brand_slug, name, year, family_slug, gender, perfumers, top, heart, base, variants[(conc, ml, gtin)])
+PERFUMES = [
+    ("maison-exemplar", "Bergamote Imaginaire", 2019, "fresh", "unisex", ["aurelie-testard"],
+     ["bergamot", "lemon", "petitgrain"], ["neroli", "green-tea"], ["white-musk", "cedarwood"],
+     [("edt", 50, "2000000000011"), ("edt", 100, "2000000000028")]),
+    ("maison-exemplar", "Rose Hypothèse", 2021, "floral", "feminine", ["aurelie-testard"],
+     ["pink-pepper", "pear"], ["rose", "peony", "violet"], ["white-musk", "cashmeran"],
+     [("edp", 50, "2000000000035"), ("edp", 100, "2000000000042")]),
+    ("maison-exemplar", "Chypre Fictif", 2016, "chypre", "feminine", ["mira-synthea"],
+     ["bergamot", "mandarin"], ["rose", "jasmine"], ["oakmoss", "patchouli", "labdanum"],
+     [("edp", 75, "2000000000059")]),
+    ("atelier-nimbus", "Cumulus Lavender", 2020, "fougere", "masculine", ["jonah-placeholder"],
+     ["lavender", "bergamot", "rosemary"], ["geranium", "clary-sage"], ["tonka-bean", "oakmoss", "vetiver"],
+     [("edt", 100, "2000000000066"), ("edp", 100, "2000000000073")]),
+    ("atelier-nimbus", "Grey Sky Vetiver", 2022, "woody", "unisex", ["jonah-placeholder"],
+     ["grapefruit", "black-pepper"], ["iris", "nutmeg"], ["vetiver", "cedarwood", "iso-e-super"],
+     [("edp", 50, "2000000000080")]),
+    ("atelier-nimbus", "Drizzle", 2023, "fresh", "unisex", ["ada-fixture"],
+     ["marine-accord", "lime", "sea-fennel"], ["violet-leaf", "lotus"], ["ambroxan", "white-musk"],
+     [("edt", 100, "2000000000097")]),
+    ("casa-ficta", "Dolce Inventato", 2018, "gourmand", "feminine", ["tomas-demo"],
+     ["mandarin", "raspberry"], ["almond", "heliotrope"], ["vanilla", "caramel", "tonka-bean"],
+     [("edp", 30, "2000000000103"), ("edp", 90, "2000000000110")]),
+    ("casa-ficta", "Caffè Notturno", 2024, "gourmand", "unisex", ["tomas-demo"],
+     ["cardamom", "pink-pepper"], ["coffee", "iris"], ["vanilla", "cacao", "patchouli"],
+     [("edp", 100, "2000000000127")]),
+    ("casa-ficta", "Limone Finto", 2015, "fresh", "unisex", ["tomas-demo"],
+     ["lemon", "lime", "basil"], ["neroli"], ["white-musk"],
+     [("cologne", 100, "2000000000134"), ("cologne", 200, "2000000000141")]),
+    ("northwind-parfums", "Fjord Cedar", 2017, "woody", "masculine", ["ada-fixture"],
+     ["juniper-berry", "bergamot"], ["clary-sage", "cardamom"], ["cedarwood", "guaiac-wood", "ambroxan"],
+     [("edp", 100, "2000000000158")]),
+    ("northwind-parfums", "Birch Smoke", 2020, "leather", "masculine", ["ada-fixture"],
+     ["black-pepper", "juniper-berry"], ["saffron"], ["birch-tar", "leather", "vetiver"],
+     [("extrait", 50, "2000000000165")]),
+    ("northwind-parfums", "Polar Mint", 2021, "fresh", "masculine", ["jonah-placeholder"],
+     ["mint", "grapefruit", "ginger"], ["lavender", "violet-leaf"], ["ambroxan", "cedarwood"],
+     [("edt", 100, "2000000000172")]),
+    ("saffron-and-sable", "Oud Mirage", 2019, "woody", "unisex", ["mira-synthea"],
+     ["saffron", "pink-pepper"], ["rose"], ["oud", "patchouli", "amber"],
+     [("parfum", 50, "2000000000189")]),
+    ("saffron-and-sable", "Amber Caravan", 2022, "amber", "unisex", ["mira-synthea"],
+     ["cinnamon", "mandarin"], ["clove", "orange-blossom"], ["labdanum", "benzoin", "vanilla"],
+     [("edp", 100, "2000000000196")]),
+    ("saffron-and-sable", "Incense Hour", 2023, "amber", "unisex", ["mira-synthea"],
+     ["black-pepper", "cardamom"], ["myrrh", "saffron"], ["incense", "labdanum", "sandalwood"],
+     [("edp", 75, "2000000000202")]),
+    ("lumen-botanica", "Garden Theory", 2020, "floral", "unisex", ["ada-fixture"],
+     ["blackcurrant", "galbanum"], ["lily-of-the-valley", "magnolia", "fig"], ["white-musk", "cedarwood"],
+     [("edt", 50, "2000000000219"), ("edt", 100, "2000000000226")]),
+    ("lumen-botanica", "Tuberose Thesis", 2018, "floral", "feminine", ["aurelie-testard"],
+     ["neroli", "mandarin"], ["tuberose", "jasmine", "ylang-ylang"], ["sandalwood", "vanilla", "white-musk"],
+     [("edp", 100, "2000000000233")]),
+    ("lumen-botanica", "Fig Placeholder", 2024, "fresh", "unisex", ["aurelie-testard"],
+     ["bergamot", "blackcurrant"], ["fig", "green-tea"], ["cedarwood", "white-musk"],
+     [("edt", 100, "2000000000240")]),
+    ("kori-studio", "Yuzu Draft", 2021, "fresh", "unisex", ["jonah-placeholder"],
+     ["yuzu", "ginger"], ["green-tea", "magnolia"], ["iso-e-super", "white-musk"],
+     [("edt", 50, "2000000000257")]),
+    ("kori-studio", "Hinoki Sample", 2022, "woody", "unisex", ["jonah-placeholder"],
+     ["yuzu", "juniper-berry"], ["incense"], ["cedarwood", "sandalwood", "vetiver"],
+     [("edp", 50, "2000000000264")]),
+    ("kori-studio", "Sakura Mock", 2023, "floral", "feminine", ["ada-fixture"],
+     ["pear", "mandarin"], ["peony", "rose", "almond"], ["white-musk", "heliotrope"],
+     [("edp", 50, "2000000000271")]),
+    ("ivory-lane", "Lagos Noir", 2024, "amber", "unisex", ["tomas-demo"],
+     ["pink-pepper", "pineapple"], ["tobacco", "cinnamon"], ["vanilla", "oud", "amber"],
+     [("extrait", 50, "2000000000288")]),
+    ("ivory-lane", "Shea Blossom Study", 2022, "floral", "feminine", ["tomas-demo"],
+     ["mandarin", "pear"], ["orange-blossom", "gardenia", "jasmine"], ["benzoin", "vanilla", "white-musk"],
+     [("edp", 100, "2000000000295")]),
+    ("ivory-lane", "Suede Draft", 2023, "leather", "unisex", ["mira-synthea"],
+     ["aldehydes", "bergamot"], ["iris", "saffron"], ["leather", "cashmeran", "white-musk"],
+     [("edp", 75, "2000000000301")]),
+]

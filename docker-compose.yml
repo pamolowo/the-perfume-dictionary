@@ -1,5 +1,5 @@
 # Local development stack: the same images CI builds and Kubernetes runs.
-#   make up      build and start everything (db → migrate → api → web)
+#   make up      build and start everything (db → migrate → seed → api → web)
 #   make logs    follow logs     ·    make down    stop
 name: perfume
 
@@ -29,6 +29,15 @@ services:
     environment: *api-env
     depends_on:
       db: { condition: service_healthy }
+    restart: "no"
+
+  # Loads reference notes/accords and the SYNTHETIC demo catalogue. Idempotent; local and CI only.
+  seed:
+    image: perfume-api:local
+    command: ["python", "-m", "app.seed"]
+    environment: *api-env
+    depends_on:
+      migrate: { condition: service_completed_successfully }
     restart: "no"
 
   api:

@@ -36,6 +36,9 @@ jobs:
         with: { python-version: "${{ env.PYTHON_VERSION }}", cache: pip, cache-dependency-path: apps/api/pyproject.toml }
       - run: pip install -e ".[dev]"
       - run: ruff check app tests alembic
+      - name: Migrations apply cleanly and match the models
+        run: alembic upgrade head && alembic check && alembic downgrade base && alembic upgrade head
+        env: { DATABASE_URL: "${{ env.TEST_DATABASE_URL }}" }
       - run: pytest
 
   web:
@@ -71,6 +74,8 @@ jobs:
           docker compose up --build --detach
           timeout 300 bash -c 'until curl -sf localhost:8000/health/ready && curl -sf localhost:3000/healthz; do sleep 3; done'
           test "$(docker compose ps -a migrate --format '{{.ExitCode}}')" = "0"
+          test "$(docker compose ps -a seed --format '{{.ExitCode}}')" = "0"
+          curl -sf "localhost:8000/api/v1/perfumes?limit=100" | python3 -c "import json,sys; assert len(json.load(sys.stdin)['data']) == 24"
         env: { GIT_SHA: "${{ github.sha }}" }
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: "${{ env.NODE_VERSION }}", cache: npm }
