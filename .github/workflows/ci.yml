@@ -1,0 +1,115 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+  KUSTOMIZE_VERSION: "5.7.1"
+  KUBECONFORM_VERSION: "0.8.0"
+  HADOLINT_VERSION: "2.15.1"
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env: { POSTGRES_PASSWORD: postgres, POSTGRES_DB: perfume_test }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U postgres" --health-interval 3s --health-retries 20
+    defaults: { run: { working-directory: apps/api } }
+    env:
+      TEST_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/perfume_test
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with: { python-version: "${{ env.PYTHON_VERSION }}", cache: pip, cache-dependency-path: apps/api/pyproject.toml }
+      - run: pip install -e ".[dev]"
+      - run: ruff check app tests alembic
+      - run: pytest
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "${{ env.NODE_VERSION }}", cache: npm }
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with: { python-version: "${{ env.PYTHON_VERSION }}" }
+      - run: npm ci
+      - name: API client is in sync with the API
+        run: pip install -e "apps/api" && npm run api:types && git diff --exit-code packages/api-client
+      - run: npm run lint -w apps/web
+      - run: npm run typecheck -w apps/web
+      - run: npm test -w apps/web
+      - run: npm run build -w apps/web
+
+  containers:
+    name: images + end-to-end
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Lint Dockerfiles
+        run: |
+          curl -sSfL -o /usr/local/bin/hadolint \
+            "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64"
+          chmod +x /usr/local/bin/hadolint
+          hadolint apps/api/Dockerfile apps/web/Dockerfile
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - name: Build and start the stack (db → migrate → api → web)
+        run: |
+          docker compose up --build --detach
+          timeout 300 bash -c 'until curl -sf localhost:8000/health/ready && curl -sf localhost:3000/healthz; do sleep 3; done'
+          test "$(docker compose ps -a migrate --format '{{.ExitCode}}')" = "0"
+        env: { GIT_SHA: "${{ github.sha }}" }
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: "${{ env.NODE_VERSION }}", cache: npm }
+      - run: npm ci && npx playwright install --with-deps chromium
+      - name: End-to-end tests against the real images
+        run: npm run e2e -w apps/web
+        env: { E2E_BASE_URL: "http://localhost:3000" }
+      - name: Stack logs on failure
+        if: failure()
+        run: docker compose logs --no-color
+      - name: Scan images (fail on fixable critical vulnerabilities)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with: { image-ref: "perfume-api:local", severity: CRITICAL, ignore-unfixed: true, exit-code: "1" }
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with: { image-ref: "perfume-web:local", severity: CRITICAL, ignore-unfixed: true, exit-code: "1" }
+
+  manifests:
+    name: kubernetes manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install kustomize and kubeconform
+        run: |
+          curl -sSfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz" | tar xz -C /usr/local/bin
+          curl -sSfL "https://github.com/yannh/kubeconform/releases/download/v${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" | tar xz -C /usr/local/bin kubeconform
+      - run: scripts/validate-manifests.sh
+
+  security:
+    runs-on: ubuntu-latest
+    permissions: { contents: read, security-events: write }
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Scan repo for secrets, misconfigurations and vulnerable dependencies
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scanners: vuln,secret,misconfig
+          severity: CRITICAL,HIGH
+          format: sarif
+          output: trivy.sarif
+      - uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
+        with: { sarif_file: trivy.sarif }
