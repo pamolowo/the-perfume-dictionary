@@ -1,0 +1,14 @@
+{
+  "name": "@tpd/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Typed client for The Perfume Dictionary API, generated from the FastAPI OpenAPI schema",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "export-schema": "cd ../../apps/api && python3 -m app.export_openapi ../../packages/api-client/openapi.json",
+    "generate": "npm run export-schema && openapi-typescript openapi.json -o src/schema.d.ts --default-non-nullable false"
+  },
+  "dependencies": { "openapi-fetch": "^0.17.0" },
+  "devDependencies": { "openapi-typescript": "^7.8.0" }
+}

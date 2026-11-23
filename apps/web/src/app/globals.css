@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/500-italic.css";
+@import "@fontsource-variable/inter";
+
+/* Brand tokens (PRD v2 design system). Light is the default; dark mirrors it on espresso. */
+:root {
+  --ivory: #faf7f2;
+  --champagne: #d9c4a5;
+  --rose: #b57e86;
+  --espresso: #302521;
+  --gold: #a47b42;
+
+  --background: var(--ivory);
+  --surface: #fffdf9;
+  --surface-sunk: #f3ede4;
+  --foreground: var(--espresso);
+  --muted: #6b5b54;
+  --subtle: #71625a;           /* ≥4.5:1 on every light surface */
+  --rule: #e8dfd2;
+  --rule-strong: var(--champagne);
+  --accent: #8d5560;            /* brand rose darkened for ≥4.5:1 text contrast on every light surface */
+  --accent-wash: #f4e6e8;
+  --highlight: #7d5c2e;         /* gold as text */
+  --highlight-wash: #f3ead9;
+  --focus: var(--gold);
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1f1a17;
+    --surface: #28211d;
+    --surface-sunk: #241e1a;
+    --foreground: #f3ede4;
+    --muted: #c9bcb0;
+    --subtle: #ab9d94;
+    --rule: #3d332d;
+    --rule-strong: #5a4a3c;
+    --accent: #d4a1a9;
+    --accent-wash: #3e2c2f;
+    --highlight: #e0bd85;
+    --highlight-wash: #3a2f20;
+    --chart-1: #3987e5;
+    --chart-2: #d95926;
+    --chart-3: #199e70;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-sunk: var(--surface-sunk);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-wash: var(--accent-wash);
+  --color-highlight: var(--highlight);
+  --color-highlight-wash: var(--highlight-wash);
+  --color-champagne: var(--champagne);
+  --color-rose: var(--rose);
+  --color-gold: var(--gold);
+  --color-espresso: var(--espresso);
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+}
+h1, h2, h3 { text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.tabular { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

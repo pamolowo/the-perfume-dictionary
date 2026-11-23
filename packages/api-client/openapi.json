@@ -1,0 +1,180 @@
+{
+ "components": {
+  "schemas": {
+   "HealthOut": {
+    "properties": {
+     "status": {
+      "const": "ok",
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status"
+    ],
+    "title": "HealthOut",
+    "type": "object"
+   },
+   "MetaOut": {
+    "properties": {
+     "environment": {
+      "title": "Environment",
+      "type": "string"
+     },
+     "git_sha": {
+      "title": "Git Sha",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "version": {
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "version",
+     "git_sha",
+     "environment"
+    ],
+    "title": "MetaOut",
+    "type": "object"
+   },
+   "NotReadyOut": {
+    "properties": {
+     "database": {
+      "const": "unavailable",
+      "title": "Database",
+      "type": "string"
+     },
+     "status": {
+      "const": "not_ready",
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "database"
+    ],
+    "title": "NotReadyOut",
+    "type": "object"
+   },
+   "ReadyOut": {
+    "properties": {
+     "database": {
+      "const": "ok",
+      "title": "Database",
+      "type": "string"
+     },
+     "migration": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Migration"
+     },
+     "status": {
+      "const": "ready",
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "database",
+     "migration"
+    ],
+    "title": "ReadyOut",
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "title": "The Perfume Dictionary API",
+  "version": "0.0.0-dev"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/api/v1/meta": {
+   "get": {
+    "operationId": "meta_api_v1_meta_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MetaOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "What is running: version, commit and environment",
+    "tags": [
+     "system"
+    ]
+   }
+  },
+  "/health": {
+   "get": {
+    "operationId": "health_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HealthOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Liveness: the process is up",
+    "tags": [
+     "system"
+    ]
+   }
+  },
+  "/health/ready": {
+   "get": {
+    "operationId": "ready_health_ready_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReadyOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NotReadyOut"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Readiness: dependencies reachable and migrations applied",
+    "tags": [
+     "system"
+    ]
+   }
+  }
+ }
+}
