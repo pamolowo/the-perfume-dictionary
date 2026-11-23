@@ -1,0 +1,24 @@
+# Local only. Staging/production use a managed PostgreSQL service.
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: perfume-db
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16
+  bootstrap:
+    initdb: { database: perfume, owner: perfume }
+  storage: { size: 1Gi }
+---
+# CloudNativePG pods must be reachable from the app pods despite the default-deny policy.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: allow-app-to-postgres }
+spec:
+  podSelector: { matchLabels: { cnpg.io/cluster: perfume-db } }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector: { matchLabels: { app.kubernetes.io/part-of: perfume-dictionary } }
+        - podSelector: { matchLabels: { cnpg.io/cluster: perfume-db } }
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: cnpg-system } }

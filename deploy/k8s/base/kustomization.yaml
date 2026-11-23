@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - pairs: { app.kubernetes.io/part-of: perfume-dictionary }
+    includeSelectors: false
+resources:
+  - config.yaml
+  - serviceaccounts.yaml
+  - api.yaml
+  - web.yaml
+  - migrate-job.yaml
+  - networkpolicies.yaml
+  - httproutes.yaml
+images:
+  - name: perfume-api
+    newName: ghcr.io/OWNER/perfume-api
+    newTag: edge
+  - name: perfume-web
+    newName: ghcr.io/OWNER/perfume-web
+    newTag: edge

@@ -1,0 +1,32 @@
+# Default: nothing may connect to pods in this namespace, except what's allowed below.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: default-deny-ingress }
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+---
+# The website: reachable from the gateway (Envoy Gateway runs in envoy-gateway-system).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: allow-gateway-to-web }
+spec:
+  podSelector: { matchLabels: { app.kubernetes.io/name: perfume-web } }
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{ namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: envoy-gateway-system } } }]
+      ports: [{ port: 3000 }]
+---
+# The API: reachable from the website and from the gateway (public API), plus Prometheus for /metrics.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: allow-web-gateway-monitoring-to-api }
+spec:
+  podSelector: { matchLabels: { app.kubernetes.io/name: perfume-api } }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector: { matchLabels: { app.kubernetes.io/name: perfume-web } }
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: envoy-gateway-system } }
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: monitoring } }
+      ports: [{ port: 8000 }]

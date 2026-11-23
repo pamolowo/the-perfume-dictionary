@@ -1,0 +1,10 @@
+# Non-secret settings. Secrets (DATABASE_URL as key `uri`) come from the Secret `perfume-database`,
+# created by External Secrets in staging/production and by CloudNativePG locally.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: perfume-config
+data:
+  ENVIRONMENT: base
+  LOG_LEVEL: INFO
+  CORS_ORIGINS: '["https://example.invalid"]'

@@ -1,0 +1,42 @@
+# Runs `alembic upgrade head` BEFORE new pods roll out (Argo CD PreSync hook). Old pods keep serving meanwhile, so
+# every migration must be backward-compatible with the previous release (expand → migrate → contract).
+# Locally, scripts/k8s-local.sh runs it before applying the rest.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: perfume-migrate
+  labels: { app.kubernetes.io/name: perfume-migrate, app.kubernetes.io/component: migration }
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 600
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: perfume-migrate }
+    spec:
+      restartPolicy: Never
+      serviceAccountName: perfume-api
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: migrate
+          image: perfume-api
+          command: ["alembic", "upgrade", "head"]
+          envFrom: [{ configMapRef: { name: perfume-config } }]
+          env:
+            - name: DATABASE_URL
+              valueFrom: { secretKeyRef: { name: perfume-database, key: uri } }
+          resources:
+            requests: { cpu: 50m, memory: 128Mi }
+            limits: { memory: 256Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes: [{ name: tmp, emptyDir: {} }]

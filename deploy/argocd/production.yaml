@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: perfume-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/OWNER/the-perfume-dictionary.git
+    targetRevision: main
+    path: deploy/k8s/overlays/production
+  destination: { server: https://kubernetes.default.svc, namespace: perfume }
+  # Production syncs only when you press Sync (or `argocd app sync perfume-production`) after the release PR merges.
+  syncPolicy:
+    syncOptions: [CreateNamespace=false, ServerSideApply=true]

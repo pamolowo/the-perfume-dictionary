@@ -1,0 +1,30 @@
+# Production: images from GHCR at an exact tag (CI/CD updates newTag), secrets from the cloud secret manager via External
+# Secrets, TLS via cert-manager. Argo CD syncs this folder (deploy/argocd/production.yaml).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: perfume
+resources:
+  - ../../base
+  - namespace.yaml
+  - externalsecret.yaml
+  - gateway.yaml
+images:
+  - { name: perfume-api, newName: ghcr.io/OWNER/perfume-api, newTag: sha-0000000 }
+  - { name: perfume-web, newName: ghcr.io/OWNER/perfume-web, newTag: sha-0000000 }
+patches:
+  - target: { kind: ConfigMap, name: perfume-config }
+    patch: |-
+      - { op: replace, path: /data/ENVIRONMENT, value: production }
+      - { op: replace, path: /data/CORS_ORIGINS, value: '["https://www.theperfumedictionary.com"]' }
+  - target: { kind: Deployment }
+    patch: |-
+      - { op: replace, path: /spec/replicas, value: 3 }
+  - target: { kind: HorizontalPodAutoscaler }
+    patch: |-
+      - { op: replace, path: /spec/minReplicas, value: 3 }
+  - target: { kind: HTTPRoute, name: perfume-web }
+    patch: |-
+      - { op: replace, path: /spec/hostnames, value: [www.theperfumedictionary.com] }
+  - target: { kind: HTTPRoute, name: perfume-api }
+    patch: |-
+      - { op: replace, path: /spec/hostnames, value: [api.theperfumedictionary.com] }

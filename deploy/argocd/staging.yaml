@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: perfume-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/OWNER/the-perfume-dictionary.git
+    targetRevision: main
+    path: deploy/k8s/overlays/staging
+  destination: { server: https://kubernetes.default.svc, namespace: perfume-staging }
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions: [CreateNamespace=false, ServerSideApply=true]

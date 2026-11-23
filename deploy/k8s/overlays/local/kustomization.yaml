@@ -1,0 +1,47 @@
+# Local cluster (kind). Images are built locally and loaded with `kind load`; the database is a single-instance
+# CloudNativePG cluster whose operator generates the Secret `perfume-db-app` (key `uri`).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: perfume
+resources:
+  - ../../base
+  - namespace.yaml
+  - postgres.yaml
+  - gateway.yaml
+images:
+  - { name: perfume-api, newName: perfume-api, newTag: local }
+  - { name: perfume-web, newName: perfume-web, newTag: local }
+patches:
+  - target: { kind: ConfigMap, name: perfume-config }
+    patch: |-
+      - { op: replace, path: /data/ENVIRONMENT, value: local }
+      - { op: replace, path: /data/CORS_ORIGINS, value: '["http://perfume.localhost:8080"]' }
+  - target: { kind: Deployment }
+    patch: |-
+      - { op: replace, path: /spec/replicas, value: 1 }
+  - target: { kind: HorizontalPodAutoscaler }
+    patch: |-
+      - { op: replace, path: /spec/minReplicas, value: 1 }
+      - { op: replace, path: /spec/maxReplicas, value: 2 }
+  - target: { kind: PodDisruptionBudget }
+    patch: |-
+      - { op: replace, path: /spec/minAvailable, value: 0 }
+  # CloudNativePG names the app secret after the cluster
+  - target: { kind: Deployment, name: perfume-api }
+    patch: |-
+      - { op: replace, path: /spec/template/spec/containers/0/env/0/valueFrom/secretKeyRef/name, value: perfume-db-app }
+  - target: { kind: Job, name: perfume-migrate }
+    patch: |-
+      - { op: replace, path: /spec/template/spec/containers/0/env/0/valueFrom/secretKeyRef/name, value: perfume-db-app }
+  - target: { kind: HTTPRoute }
+    patch: |-
+      - { op: replace, path: /spec/parentRefs/0/sectionName, value: http }
+  - target: { kind: HTTPRoute, name: perfume-web }
+    patch: |-
+      - { op: replace, path: /spec/hostnames, value: [perfume.localhost] }
+  - target: { kind: HTTPRoute, name: perfume-api }
+    patch: |-
+      - { op: replace, path: /spec/hostnames, value: [api.perfume.localhost] }
+  - target: { kind: Deployment }
+    patch: |-
+      - { op: add, path: /spec/template/spec/containers/0/imagePullPolicy, value: IfNotPresent }
