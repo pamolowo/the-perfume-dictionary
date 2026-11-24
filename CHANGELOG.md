@@ -15,6 +15,10 @@ versions follow [SemVer](https://semver.org/).
 - CI: migrations up/down/up + `alembic check`; compose stack must serve the 24 seeded perfumes.
 - `DB_POOLING=none` for serverless hosting.
 
+### Fixed
+- Web image: the build stage lost nested workspace `node_modules` (e.g. `apps/web/node_modules`), so the type
+  check failed in Docker only. It now builds on top of the install stage.
+
 ### Changed
 - CI: security gate works on private repos (CodeQL/SARIF only when public); image builds no longer cancel each
   other; Dependabot limited to grouped minor/patch updates; Compose builds the API image once.
