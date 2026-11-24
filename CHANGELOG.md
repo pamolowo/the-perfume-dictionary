@@ -16,6 +16,8 @@ versions follow [SemVer](https://semver.org/).
 - `DB_POOLING=none` for serverless hosting.
 
 ### Changed
+- CI: security gate works on private repos (CodeQL/SARIF only when public); image builds no longer cancel each
+  other; Dependabot limited to grouped minor/patch updates; Compose builds the API image once.
 - Hosting plan: local → free cloud preview (Vercel Hobby + Neon Free, `perfume.pambydesign.net`) → AWS (ADR 0007).
 - "Dupes" becomes **Similar Perfumes** (ADR 0006).
 

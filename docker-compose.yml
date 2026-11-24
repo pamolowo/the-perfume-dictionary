@@ -3,6 +3,11 @@
 #   make logs    follow logs     ·    make down    stop
 name: perfume
 
+# One build definition shared by migrate, seed and api, so Compose builds the API image once.
+x-api-build: &api-build
+  context: apps/api
+  args: { APP_VERSION: "${APP_VERSION:-0.0.0-dev}", GIT_SHA: "${GIT_SHA:-local}" }
+
 x-api-env: &api-env
   DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@db:5432/perfume
   ENVIRONMENT: local
@@ -24,7 +29,7 @@ services:
 
   migrate:
     image: perfume-api:local
-    build: { context: apps/api }
+    build: *api-build
     command: ["alembic", "upgrade", "head"]
     environment: *api-env
     depends_on:
@@ -34,6 +39,7 @@ services:
   # Loads reference notes/accords and the SYNTHETIC demo catalogue. Idempotent; local and CI only.
   seed:
     image: perfume-api:local
+    build: *api-build
     command: ["python", "-m", "app.seed"]
     environment: *api-env
     depends_on:
@@ -42,9 +48,7 @@ services:
 
   api:
     image: perfume-api:local
-    build:
-      context: apps/api
-      args: { APP_VERSION: "${APP_VERSION:-0.0.0-dev}", GIT_SHA: "${GIT_SHA:-local}" }
+    build: *api-build
     environment: *api-env
     ports: ["8000:8000"]
     depends_on:
