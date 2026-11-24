@@ -1,5 +1,10 @@
 # DevOps design
 
+> **Hosting path (ADR 0007):** local (compose, kind) → free cloud preview on Vercel Hobby + Neon Free
+> (`perfume.pambydesign.net`, Phase 3) → AWS EKS + RDS (Phase 8, when needed). The staging/production columns below
+> describe the AWS target; until then "staging" is the Vercel preview deployment and "production" the Vercel
+> production deployment, with Neon branches as the per-PR databases.
+
 ## Environments
 
 | | local (compose) | local (kind) | staging | production |

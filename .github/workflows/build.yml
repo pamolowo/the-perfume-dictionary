@@ -17,6 +17,7 @@ jobs:
       id-token: write     # keyless signing with cosign (GitHub OIDC)
       attestations: write
     strategy:
+      fail-fast: false   # one image failing shouldn't cancel the other
       matrix:
         include:
           - { name: api, context: apps/api, dockerfile: apps/api/Dockerfile }

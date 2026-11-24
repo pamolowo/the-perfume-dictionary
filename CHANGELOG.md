@@ -5,6 +5,26 @@ versions follow [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+### Added — Phase 1: catalogue database & API
+- Schema (migration 0001): data sources, families, brands, perfumers, notes + aliases, accords, perfumes, variants,
+  pyramid/accord/perfumer links; check constraints, FK rules, provenance and synthetic flags.
+- Endpoints for perfumes (filters, sort, cursor pagination), brands, notes (alias lookup), accords, perfumers,
+  families, data sources and cross-catalogue search (pg_trgm + unaccent: accent- and typo-tolerant).
+- Reference data: 75 notes (70 aliases), 16 accords. Synthetic demo catalogue: 8 brands, 5 perfumers, 24 perfumes.
+- Idempotent seed (`python -m app.seed`) as a compose service and local kind Job; refuses production.
+- CI: migrations up/down/up + `alembic check`; compose stack must serve the 24 seeded perfumes.
+- `DB_POOLING=none` for serverless hosting.
+
+### Fixed
+- Web image: the build stage lost nested workspace `node_modules` (e.g. `apps/web/node_modules`), so the type
+  check failed in Docker only. It now builds on top of the install stage.
+
+### Changed
+- CI: security gate works on private repos (CodeQL/SARIF only when public); image builds no longer cancel each
+  other; Dependabot limited to grouped minor/patch updates; Compose builds the API image once.
+- Hosting plan: local → free cloud preview (Vercel Hobby + Neon Free, `perfume.pambydesign.net`) → AWS (ADR 0007).
+- "Dupes" becomes **Similar Perfumes** (ADR 0006).
+
 ### Added — Phase 0: walking skeleton and delivery pipeline
 - API skeleton: `/health`, `/health/ready` (database + migration revision), `/api/v1/meta`, `/metrics`; JSON logs
   with request IDs; Alembic baseline; 11 tests.

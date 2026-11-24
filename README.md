@@ -4,8 +4,8 @@ A global fragrance encyclopedia, community and data/API platform. This repositor
 **DevOps-first**: every feature ships through the same pipeline — pull request → CI → signed container images →
 GitOps deploy to Kubernetes.
 
-> **Status:** Phase 0 — walking skeleton. A website that talks to an API that talks to a database, with the whole
-> delivery pipeline around it. Features arrive from Phase 1 (see `docs/implementation-roadmap.md`).
+> **Status:** Phase 1 — catalogue database & API (synthetic demo data). Hosting: local now; free cloud preview at
+> `perfume.pambydesign.net` in Phase 3; AWS later (see `docs/implementation-roadmap.md`, ADR 0007).
 
 ## What's here
 
@@ -71,7 +71,7 @@ branch ─► PR ─► CI: lint · unit · integration · build images · e2e o
 Staging/production deploys start in Phase 3, once the cloud account and cluster exist. See
 `docs/architecture/devops-design.md`.
 
-## Endpoints in Phase 0
+## Endpoints
 
 | Endpoint | Purpose |
 |---|---|
@@ -79,6 +79,16 @@ Staging/production deploys start in Phase 3, once the cloud account and cluster 
 | `GET /health/ready` | Readiness — database reachable and migrations applied (returns the revision). 503 otherwise. |
 | `GET /api/v1/meta` | Name, version, git SHA, environment — proves which build is running. |
 | `GET /metrics` | Prometheus metrics (request count and latency by route template). |
+| `GET /api/v1/perfumes` | Filter (`q`, `brand`, `note`, `accord`, `family`, `perfumer`, `concentration`, `year_from/to`), sort, cursor-paginate. |
+| `GET /api/v1/perfumes/{slug or id}` | Profile: pyramid, accords (1–100), variants, perfumers, data source. |
+| `GET /api/v1/brands`, `/brands/{slug}` | Houses and their perfumes. |
+| `GET /api/v1/notes`, `/notes/{slug or alias}` | Notes dictionary; `orris` resolves to Iris. |
+| `GET /api/v1/accords`, `/accords/{slug}` | Accords and the perfumes where each is most prominent. |
+| `GET /api/v1/perfumers`, `/perfumers/{slug}`, `/families`, `/data-sources` | People, families, provenance. |
+| `GET /api/v1/search?q=` | Across everything; accent- and typo-tolerant (`caffe` → Caffè, `vanila` → Vanilla). |
+
+All catalogue data in this repo is **synthetic** (fictional brands and perfumes, `is_synthetic: true`). Errors always
+look like `{"error": {"code", "message", "details"}}`.
 | web `GET /healthz` | Website liveness. |
 
 ## Contributing

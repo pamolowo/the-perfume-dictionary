@@ -36,6 +36,9 @@ jobs:
         with: { python-version: "${{ env.PYTHON_VERSION }}", cache: pip, cache-dependency-path: apps/api/pyproject.toml }
       - run: pip install -e ".[dev]"
       - run: ruff check app tests alembic
+      - name: Migrations apply cleanly and match the models
+        run: alembic upgrade head && alembic check && alembic downgrade base && alembic upgrade head
+        env: { DATABASE_URL: "${{ env.TEST_DATABASE_URL }}" }
       - run: pytest
 
   web:
@@ -71,6 +74,8 @@ jobs:
           docker compose up --build --detach
           timeout 300 bash -c 'until curl -sf localhost:8000/health/ready && curl -sf localhost:3000/healthz; do sleep 3; done'
           test "$(docker compose ps -a migrate --format '{{.ExitCode}}')" = "0"
+          test "$(docker compose ps -a seed --format '{{.ExitCode}}')" = "0"
+          curl -sf "localhost:8000/api/v1/perfumes?limit=100" | python3 -c "import json,sys; assert len(json.load(sys.stdin)['data']) == 24"
         env: { GIT_SHA: "${{ github.sha }}" }
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: "${{ env.NODE_VERSION }}", cache: npm }
@@ -103,7 +108,19 @@ jobs:
     permissions: { contents: read, security-events: write }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Scan repo for secrets, misconfigurations and vulnerable dependencies
+      # Gate: fail on leaked secrets or fixable CRITICAL vulnerabilities in dependencies. Works on any repo.
+      - name: Scan for secrets and critical vulnerable dependencies (blocking)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scanners: vuln,secret
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      # Report: everything HIGH+ incl. Dockerfile/Kubernetes misconfigurations, shown in the Security tab.
+      # Code scanning is free on public repos only (private repos need paid GitHub Code Security), so skip otherwise.
+      - name: Full scan for the Security tab
+        if: always() && github.event.repository.visibility == 'public'
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: fs
@@ -111,5 +128,6 @@ jobs:
           severity: CRITICAL,HIGH
           format: sarif
           output: trivy.sarif
-      - uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
+      - if: always() && github.event.repository.visibility == 'public'
+        uses: github/codeql-action/upload-sarif@1bd86f2fdb4b86187fa4059f16f31a3202acc9ea # v4.39.4
         with: { sarif_file: trivy.sarif }

@@ -10,12 +10,11 @@ COPY apps/web/package.json apps/web/
 COPY packages/api-client/package.json packages/api-client/
 RUN npm ci --workspace apps/web --include-workspace-root --no-audit --no-fund
 
-FROM node:22-slim AS build
-WORKDIR /repo
+# Build on top of `deps` so every node_modules folder npm created is kept — workspaces can put packages in
+# apps/web/node_modules and packages/*/node_modules, not only the root (copying just the root one broke the build).
+FROM deps AS build
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ENV NEXT_TELEMETRY_DISABLED=1 NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
-COPY --from=deps /repo/node_modules ./node_modules
-COPY package.json package-lock.json ./
 COPY packages/api-client ./packages/api-client
 COPY apps/web ./apps/web
 RUN npm run build -w apps/web

@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -17,6 +18,9 @@ class Settings(BaseSettings):
     # Injected at build/deploy time so every response can say exactly what is running.
     app_version: str = "0.0.0-dev"
     git_sha: str = "unknown"
+    # "pool" for long-running servers (compose, Kubernetes); "none" for serverless hosts, where each instance should
+    # open a connection per request against a pooled endpoint (e.g. Neon's -pooler host).
+    db_pooling: Literal["pool", "none"] = "pool"
 
     @field_validator("database_url")
     @classmethod
