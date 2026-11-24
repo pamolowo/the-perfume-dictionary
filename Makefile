@@ -46,12 +46,12 @@ api-types: ## Regenerate the typed API client from the OpenAPI schema
 
 ## ── Kubernetes ─────────────────────────────────────────────────
 k8s-validate: ## Render every overlay and validate against schemas
-	scripts/validate-manifests.sh
+	bash scripts/validate-manifests.sh
 k8s-up: ## Create a kind cluster, install add-ons, deploy the local overlay
-	scripts/k8s-local.sh up
+	bash scripts/k8s-local.sh up
 k8s-deploy: ## Rebuild images and redeploy to the kind cluster
-	scripts/k8s-local.sh deploy
+	bash scripts/k8s-local.sh deploy
 k8s-down: ## Delete the kind cluster
-	scripts/k8s-local.sh down
+	bash scripts/k8s-local.sh down
 
 .PHONY: help up down reset logs install dev-api seed migration dev-web lint test e2e api-types k8s-validate k8s-up k8s-deploy k8s-down
