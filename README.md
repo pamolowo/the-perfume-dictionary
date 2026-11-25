@@ -4,7 +4,7 @@ A global fragrance encyclopedia, community and data/API platform. This repositor
 **DevOps-first**: every feature ships through the same pipeline — pull request → CI → signed container images →
 GitOps deploy to Kubernetes.
 
-> **Status:** Phase 1 — catalogue database & API (synthetic demo data). Hosting: local now; free cloud preview at
+> **Status:** Phase 2 — the website: perfume, house, note, accord and perfumer pages plus search, on the catalogue API (synthetic demo data). Hosting: local now; free cloud preview at
 > `perfume.pambydesign.net` in Phase 3; AWS later (see `docs/implementation-roadmap.md`, ADR 0007).
 
 ## What's here
@@ -70,6 +70,18 @@ branch ─► PR ─► CI: lint · unit · integration · build images · e2e o
 
 Staging/production deploys start in Phase 3, once the cloud account and cluster exist. See
 `docs/architecture/devops-design.md`.
+
+## Website pages
+
+| Page | What it shows |
+|---|---|
+| `/` | Search, newest perfumes, accords to browse |
+| `/perfumes`, `/perfumes/{slug}` | Browse with filters (note, accord, family, house, concentration, years, sort); profile with note pyramid, main accords, bottles, provenance |
+| `/brands`, `/notes`, `/accords`, `/perfumers` (+ `/{slug}`) | Indexes and detail pages; note aliases resolve (`/notes/orris` → Iris) |
+| `/search?q=` | Everything at once; accent- and typo-tolerant |
+| `/sitemap.xml`, `/robots.txt` | Built from the live catalogue; previews are kept out of search engines (`ALLOW_INDEXING`) |
+
+Every page type is covered by Playwright (mobile + desktop, axe accessibility checks) and by Lighthouse budgets in CI.
 
 ## Endpoints
 
