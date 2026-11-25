@@ -101,7 +101,7 @@ jobs:
         run: |
           curl -sSfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz" | tar xz -C /usr/local/bin
           curl -sSfL "https://github.com/yannh/kubeconform/releases/download/v${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" | tar xz -C /usr/local/bin kubeconform
-      - run: scripts/validate-manifests.sh
+      - run: bash scripts/validate-manifests.sh
 
   security:
     runs-on: ubuntu-latest

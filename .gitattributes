@@ -1,0 +1,2 @@
+# Keep Linux line endings for scripts even when the repo is touched from Windows
+*.sh text eol=lf
