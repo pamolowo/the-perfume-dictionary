@@ -12,7 +12,12 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: [["list"]],
-  use: { baseURL: external ?? `http://localhost:${PORT}`, trace: "retain-on-failure" },
+  use: {
+    baseURL: external ?? `http://localhost:${PORT}`,
+    trace: "retain-on-failure",
+    // Optional: use an already-installed Chromium (e.g. offline machines). CI installs Playwright's own browser.
+    launchOptions: process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {},
+  },
   projects: [
     { name: "mobile", use: { ...devices["Pixel 7"] } },
     { name: "desktop", use: { viewport: { width: 1280, height: 900 } } },
