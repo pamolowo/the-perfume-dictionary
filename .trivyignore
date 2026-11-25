@@ -1,0 +1,9 @@
+# Trivy findings dismissed on purpose. Each entry needs a reason; review when the deployment changes.
+
+# KSV-0011 "CPU not limited": deliberate. CPU limits cause throttling under bursts; we set CPU *requests* (for
+# scheduling) and memory *limits* (for safety), the commonly recommended pattern.
+KSV-0011
+
+# KSV-01010 "ConfigMap with sensitive content": false positive. The rule matches the key name LOG_LEVEL; the
+# ConfigMap holds only ENVIRONMENT, LOG_LEVEL and CORS_ORIGINS. Secrets come from Secret objects.
+KSV-01010

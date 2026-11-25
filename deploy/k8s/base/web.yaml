@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: perfume-web
+  namespace: perfume
   labels: { app.kubernetes.io/name: perfume-web, app.kubernetes.io/component: web }
 spec:
   replicas: 2
@@ -15,9 +16,9 @@ spec:
       serviceAccountName: perfume-web
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
         seccompProfile: { type: RuntimeDefault }
       topologySpreadConstraints:
         - maxSkew: 1
@@ -26,7 +27,7 @@ spec:
           labelSelector: { matchLabels: { app.kubernetes.io/name: perfume-web } }
       containers:
         - name: web
-          image: perfume-web
+          image: perfume-web:edge
           ports: [{ name: http, containerPort: 3000 }]
           env:
             - { name: API_URL, value: "http://perfume-api:8000" }

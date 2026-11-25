@@ -11,10 +11,5 @@ resources:
   - migrate-job.yaml
   - networkpolicies.yaml
   - httproutes.yaml
-images:
-  - name: perfume-api
-    newName: ghcr.io/pamolowo/perfume-api
-    newTag: edge
-  - name: perfume-web
-    newName: ghcr.io/pamolowo/perfume-web
-    newTag: edge
+# No `images:` here on purpose: each overlay sets name + tag. (A rename in the base would stop the overlays'
+# `name: perfume-api` from matching, silently deploying the base tag — see validate-manifests.sh.)
