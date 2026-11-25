@@ -1,4 +1,0 @@
-# Static files in apps/web/public are served from the site root. This file also keeps the folder in Git
-# (Git does not store empty folders, and the web Dockerfile copies it).
-User-agent: *
-Allow: /
