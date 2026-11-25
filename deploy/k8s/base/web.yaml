@@ -31,6 +31,8 @@ spec:
           ports: [{ name: http, containerPort: 3000 }]
           env:
             - { name: API_URL, value: "http://perfume-api:8000" }
+            # Search engines stay out unless an environment explicitly opts in (production, once data is real).
+            - { name: ALLOW_INDEXING, value: "false" }
           startupProbe:
             httpGet: { path: /healthz, port: http }
             periodSeconds: 2
