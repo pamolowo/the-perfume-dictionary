@@ -22,8 +22,10 @@
 - `api`: ruff, pytest against a real Postgres service (migrations down/up).
 - `web`: regenerate API client and fail on drift, ESLint, `tsc`, Vitest, production build.
 - `containers`: hadolint, build both images via compose, start db → migrate → api → web, Playwright e2e against
-  the real images, Trivy image scan (fail on fixable CRITICAL).
-- `manifests`: render every Kustomize overlay, validate with kubeconform (+ CRD schemas).
+  the real images, Lighthouse budgets on 8 page types (reports kept as an artifact), Trivy image scan (fail on
+  fixable CRITICAL).
+- `manifests`: render every Kustomize overlay, validate with kubeconform (+ CRD schemas), and check each
+  environment deploys exactly the images it pins (`:local` on kind, `sha-…`/`X.Y.Z` in the cloud).
 - `security`: Trivy filesystem scan (deps, secrets, IaC misconfig) → GitHub code scanning.
 
 **`codeql.yml`** — static analysis for Python and TypeScript (PRs, main, weekly).

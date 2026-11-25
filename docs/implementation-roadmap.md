@@ -11,9 +11,9 @@ Hosting path (ADR 0007): **local** (compose, kind) → **free cloud** (Vercel Ho
 
 | # | Phase | Product scope | DevOps scope |
 |---|---|---|---|
-| 0 | Foundation ✅ | Web → API → DB skeleton, build identity on the page | Monorepo, Dockerfiles, compose, CI, image build/sign, CodeQL, Dependabot, Kustomize + kind, Argo CD apps, ADRs |
-| **1** | **Catalogue database & API** ✅ in review | Brands, perfumers, notes (+aliases), accords, families, perfumes, variants; filters, cursor pagination, accent-/typo-tolerant search; synthetic seed | Migration up/down/up + drift check in CI, integrity tests, seed as compose service and kind Job (never production), packaging check |
-| 2 | Website | Home, perfume/brand/note/accord pages, search UI, SEO, accessibility | Lighthouse CI budgets, e2e for every page type, caching headers |
+| 0 | Foundation ✅ v0.1.0 | Web → API → DB skeleton, build identity on the page | Monorepo, Dockerfiles, compose, CI, image build/sign, CodeQL, Dependabot, Kustomize + kind, Argo CD apps, ADRs |
+| 1 | Catalogue database & API ✅ v0.2.0 | Brands, perfumers, notes (+aliases), accords, families, perfumes, variants; filters, cursor pagination, accent-/typo-tolerant search; synthetic seed | Migration up/down/up + drift check in CI, integrity tests, seed as compose service and kind Job (never production), packaging check |
+| **2** | **Website** ✅ in review | Home, perfume/brand/note/accord pages, search UI, SEO, accessibility | Lighthouse budgets in CI, e2e + axe for every page type, request-time sitemap/robots, security-finding triage |
 | 3 | **Free cloud preview** | Public preview at `perfume.pambydesign.net` | Neon project + branches per PR; two Vercel projects; GitHub Actions deploy (migrate → deploy → smoke → promote); DNS at Squarespace; uptime check; Vercel/Neon env secrets via GitHub Environments; runbooks |
 | 4 | AI Mixer | Blend perfumes, predicted scent profile (virtual weights, clearly labelled predictions) | Model/config versioning, evaluation job with regression threshold, feature flag |
 | 5 | Similar Perfumes (ADR 0006) | Similar scent profile from notes/accords with score, model version, confidence | Feature flag off publicly until legal sign-off; offline evaluation |

@@ -5,6 +5,26 @@ versions follow [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+### Added — Phase 2: website
+- Pages: home, perfumes (filters + pagination), perfume profile (pyramid, accords, bottles, provenance), houses,
+  notes (grouped by family, alias search), accords, perfumers, site-wide search, not-found and error states.
+- SEO: per-page titles/descriptions/canonicals, Open Graph, JSON-LD (Product, Brand, Person, BreadcrumbList,
+  WebSite search), request-time sitemap and robots; fictional records and search results are noindex;
+  `ALLOW_INDEXING` keeps previews out of search engines.
+- Accessibility: skip link, landmarks, heading order, 24px targets, no-JS mobile menu; axe on every page type.
+- Tests: 22 unit tests, 13 end-to-end scenarios × mobile/desktop; Lighthouse budgets in CI (accessibility and
+  best practices ≥ 95, SEO basics, performance warning below 80).
+
+### Fixed
+- Overlays now deploy the image tags they pin (the base renamed images first, so staging/production would have
+  run `edge`); CI fails if an environment deploys anything else.
+- All 17 code-scanning findings resolved: non-root UID/GID 10001 everywhere, explicit tags/namespaces, two
+  documented exceptions in `.trivyignore`.
+- Playwright packages aligned (1.65.1) without an override.
+
+
+## [0.2.0] - 2026-11-25
+
 ### Added — Phase 1: catalogue database & API
 - Schema (migration 0001): data sources, families, brands, perfumers, notes + aliases, accords, perfumes, variants,
   pyramid/accord/perfumer links; check constraints, FK rules, provenance and synthetic flags.
